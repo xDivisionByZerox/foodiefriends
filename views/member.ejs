@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Foodie Friends</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/member.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-...your-sha-hash-here..." crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-slider@11.0.2/dist/css/bootstrap-slider.min.css">
+<!-- Add these links in the head section of your HTML document -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/member.css">
+<link rel="icon" type="image/x-icon" href="../img/speed-dating.png">
+
+</head>
+<body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="/match" class="w3-bar-item w3-button w3-wide"><img src="../img/speed-dating.png" style="width: 30px;height: 30px;"> Foodie Friends</a>
+    <div class="w3-right w3-hide-small">
+      <div class="w3-bar-item w3-button button-45" id="backToMatchBtn" role="button">Starting New Date!</div>
+
+      <a href="/my-matches" class="w3-bar-item w3-button"><img src="../img/dating.png"  style="width: 30px;height: 30px;"> Matches</a>
+      <a href="/member" class="w3-bar-item w3-button"><i class="fas fa-user-alt"></i> Member</a>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Contact section -->
+  <button role="button" id="trial" type="button" class="button-46" data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-keyboard="false" style="position: revert-layer;top: 100px;margin-left: 40vw;">Preview</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >  
+    <div class="modal-dialog modal-dialog-scrollable" style="max-height: 80%;width: 400px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="https://placekitten.com/300/200" class="card-img-top" alt="${card.name}">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute;top: 20px;right: 15px"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container w3-pale-grey w3-center" style="padding:0px  16px;margin:0 auto; margin-top: 80px;max-width: 1200px;min-height: 100%;" >
+    <div class="w3-container w3-center " style="padding:24px 16px;margin: 0 auto;" id="step-1">
+        <div class="match_container">
+    
+            <h3 class="w3-border-bottom" style="text-align: center;font-weight: 700;padding: 20px;">Member center</h3>
+            <div class="d-flex align-items-start">
+              <div class="nav flex-column nav-pills me-3 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active" id="v-pills-profile-tab w3-border-left" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">Edit Profile</button>
+                <button class="nav-link" id="v-pills-restaurant-tab" data-bs-toggle="pill" data-bs-target="#v-pills-restaurant" type="button" role="tab" aria-controls="v-pills-restaurant" aria-selected="false">Edit Restaurant</button>
+        
+                <!-- <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button> -->
+                <!-- <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false" disabled>Disabled</button> -->
+                <!-- <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button> -->
+                <button class="nav-link" id="v-pills-logout-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-logout" aria-selected="false" data-toggle="modal" data-target="#logoutModal">Log out</button>
+              </div>
+              <!-- <button  role="button" id="preview-btn" type="button" class="button-46" data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-keyboard="false">Preview</button> -->
+              <!-- <div class="modal fade " id="previewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+              <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+                </div>
+                <div class="tab-pane fade" id="v-pills-restaurant" role="tabpanel" aria-labelledby="v-pills-restaurant-tab" tabindex="0" style="top: 200px;">
+                  <div id="restaurant_result">
+                    
+                  </div>
+        
+        <!-- Bootstrap Modal Markup -->
+        <div class="modal fade" id="restaurantModal" tabindex="-1" aria-labelledby="restaurantModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="restaurantModalLabel">Select A restaurant you like</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                
+                <div style="height: 100%;">
+                  <div style="display: flex;height: 100%;position: relative;margin: auto;">
+                      <div  id="map" style="height: 100%;width: 100%;bottom:0;position: absolute; background-color: rgb(255, 255, 255);"></div>
+        
+                      <!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"> -->
+        
+                      <div class="card offcanvas offcanvas-bottom custom-offcanvas"  id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="false">
+        
+                      
+                        <!-- <div class="card offcanvas offcanvas-start offcanvas-end custom-offcanvas" style="width: 18rem;" id="offcanvasRight" tabindex="-1"  aria-labelledby="offcanvasRightLabel"> -->
+                          <img class="card-img-top" alt="..." style="height: 180px;
+                          object-fit: cover;" id="popup_restaurant_img">
+                          <div class="card-body">
+                            <h5 class="card-title" id="store_name"></h5>
+                            <p class="card-text" id="store_address">XX Rd., NO.20</p>
+                            <p class="card-text" id="store_phone">0912345678</p>
+                            <a class="w3-btn" id="add_restaurant_list" style="position: absolute;right: 10px;bottom: 10px;border: 2px solid;border-radius: 100%;"><i class="fa fa-plus"></i></a>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+        
+                          </div>
+                        </div>
+        
+                  </div>
+        
+                  <form method="post" class="sendRestaurant" id="restaurant_form">
+                    <input id="pac-input" class="form-control rounded pac-target-input" type="text" name="name" style="
+                    width: 390px;
+                    position: absolute;
+                    top: 40px;" placeholder="Search a restaurant（eg. ABC burger）" required="" autocomplete="on">
+                      
+        
+                      <img src="../img/search.png" id="toggleButton" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" style="
+        position: relative;
+            top: 40px;
+            left: 335px;
+            color: #000;
+            filter: invert(75%);
+            z-index: 13455;">
+                  </form> 
+                  <!-- <button class="button-54" role="button">Button 54</button> -->
+        
+              </div>
+            
+        
+              </div>
+            </div>
+          </div>
+        </div>
+        
+                  <div id="restaurant_result"></div>
+                  <div id="restaurant_box" >
+                    <div style="height: 100%;">
+                        <div style="display: flex;height: 100%;position: relative;margin: auto;">
+                            <div  id="map" style="height: 100%;width: 100%;bottom:0;position: absolute; background-color: rgb(255, 255, 255);"></div>
+            
+                            <!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"> -->
+            
+                            <div class="card offcanvas offcanvas-bottom custom-offcanvas" style="    height: 350px;
+                            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                            
+            
+                            width: 580px;
+                            visibility: hidden;"  id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="false">
+            
+                            
+                              <!-- <div class="card offcanvas offcanvas-start offcanvas-end custom-offcanvas" style="width: 18rem;" id="offcanvasRight" tabindex="-1"  aria-labelledby="offcanvasRightLabel"> -->
+                                <img class="card-img-top" alt="..." style="height: 180px;
+                                object-fit: cover;" id="popup_restaurant_img">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="store_name"></h5>
+                                  <p class="card-text" id="store_address">XX Rd., NO.20</p>
+                                  <p class="card-text" id="store_phone">0912345678</p>
+                                  <a class="btn btn-primary" id="add_restaurant_list" style="position: absolute;
+                                  right: 20px;
+                                  bottom: 15px;">Add To List</a>
+                                  <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+            
+                                </div>
+                              </div>
+            
+                        </div>
+            
+                        <form method="post" class="sendRestaurant">
+                            <input id="pac-input" class="form-control rounded" type="text" name="name" style="
+        width: 390px;
+            position: relative;
+            top: 40px;
+            z-index: 10000;
+        " placeholder="Search a restaurant" required/>
+                            
+            
+                            <img src="../img/search.png" id="toggleButton" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" style="
+        position: relative;
+            top: -7px;
+            left: 335px;
+            color: #000;
+            filter: invert(75%);
+            z-index: 13455;">
+                        </form> 
+                        <!-- <button class="button-54" role="button">Button 54</button> -->
+            
+                    </div>
+                  
+                </div>
+                </div>
+        
+                <div class="tab-pane fade w3-container w3-grayscale form-step" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+ 
+                      <div class="w3-third w3-margin-bottom" style="margin: auto;">
+                        <div class="w3-card">
+                          <img src="https://placekitten.com/300/200" alt="John" style="width:100%">
+                          <div class="w3-container">
+                            <h3>John Doe</h3>
+                            <p class="w3-opacity">CEO & Founder</p>
+                            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-plus"></i> Add</button></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w3-third w3-margin-bottom">
+                        <div class="w3-card">
+                          <img src="https://placekitten.com/300/200" alt="Jane" style="width:100%">
+                          <div class="w3-container">
+                            <h3>Anja Doe</h3>
+                            <p class="w3-opacity">Art Director</p>
+                            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-plus"></i> Add</button></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w3-third w3-margin-bottom ">
+                        <div class="w3-card">
+                          <img src="https://placekitten.com/300/200" alt="Dan" style="width:100%">
+                          <div class="w3-container">
+                            <h3>Dan Star</h3>
+                            <p class="w3-opacity">Designer</p>
+                            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-plus"></i> Add</button></p>
+                          </div>
+                        </div>
+                      </div>
+
+                </div>
+        
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0"></div>
+              </div>
+            </div>
+    </div>
+
+</div>
+
+</div>
+<!-- Footer -->
+
+<!-- Logout Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true" data-bs-backdrop="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logoutModalLabel">Are you sure you want to log out?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;right: 20px;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Welcome back anytime</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cancel</button>
+        <button type="button"  class="btn btn-danger" id="logout">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="w3-center w3-black w3-padding-32">
+  <div class="w3-xlarge w3-section">
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap Slider JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-slider@11.0.2/dist/bootstrap-slider.min.js"></script>
+
+    <script src="../js/member.js"></script>
+ 
+<script>
+function showToast(msg,color) {
+  iziToast.show({
+    message: msg,
+    messageColor:'white',
+    messageSize: '50px',
+    messageLineHeight: '50px',
+    timeout: 2000,
+    position: 'topRight',
+    backgroundColor: color?'#C1F2B0':'#DC8686',
+    theme: 'light',
+    color: '#FBF6EE',
+    // imageWidth: 30,
+    icon: color?'fa fa-check-circle':'fa fa-close',
+    iconColor:"white", // Font Awesome icon class    animateInside: true,
+    animateOutside: false,
+    // Other options...
+  });
+    // Add a custom class to the iziToast message container
+    const toastContainer = document.querySelector('.iziToast-container .iziToast-message');
+  toastContainer.classList.add('custom-message-style');
+}
+      // Fetch API key from the server
+  fetch('/api/getApiKey')
+    .then(response => response.json())
+    .then(data => {
+      const apiKey = data.apiKey;
+
+      // Define a function to load the Google Maps API script
+      function loadGoogleMapsScript() {
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initAutocomplete`;
+        script.async = true;
+
+        // Append the script tag to the body or head of your HTML
+        document.head.appendChild(script);
+      }
+
+      // Call the function to load the Google Maps API script
+      loadGoogleMapsScript();
+    })
+    .catch(error => console.error('Error fetching API key:', error));
+
+</script>
+
+</body>
+</html>
