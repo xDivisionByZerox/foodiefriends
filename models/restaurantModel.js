@@ -16,25 +16,17 @@ const awsID = process.env.AWS_KEY_ID;
 const awsKEY = process.env.AWS_SECRET_KEY;
 const awsRegion = process.env.AWS_REGION;
 
-
-
 // Create a connection pool
 const pool = mysql.createPool({
   host: dbHost,
   user: dbUser,
   password: dbPassword,
   database: 'foodiefriend',
-  port: 3306, // MySQL default port
+  port: 3306, 
   insecureAuth: true,
-  connectionLimit: 10, // Adjust based on your needs
+  connectionLimit: 10, 
 });
 
-// Configure AWS SDK
-aws.config.update({
-  accessKeyId: awsID,
-  secretAccessKey:awsKEY,
-  region:awsRegion
-});
 const RestaurantModel = {
     getAllRestaurant: (callback)=>{
       pool.getConnection((error, connection) => {
@@ -43,10 +35,8 @@ const RestaurantModel = {
         }
         const selectQuery = `SELECT * FROM restaurant;`
         connection.query(selectQuery,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -58,10 +48,8 @@ const RestaurantModel = {
         }
         const selectQuery = `select member_id,detail.id,name,address,placeid from detail inner join restaurants ON detail.id =restaurants.restaurant_id where member_id = ?;`
         connection.query(selectQuery,id,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -75,10 +63,8 @@ const RestaurantModel = {
         }
         const selectQuery = `SELECT * FROM detail where id = ?;`
         connection.query(selectQuery,id,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -92,10 +78,8 @@ const RestaurantModel = {
         const values = [id, selectedDay];
     
         connection.query(insertQuery, values,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -108,10 +92,8 @@ const RestaurantModel = {
         const selectQuery = 'select * from day where member_id = ?;';
     
         connection.query(selectQuery, id,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -125,10 +107,8 @@ const RestaurantModel = {
         const values = [id,day];
 
         connection.query(selectQuery, values,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -142,10 +122,8 @@ const RestaurantModel = {
         const values = [id,day];
 
         connection.query(deleteQuery, values,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -158,10 +136,8 @@ const RestaurantModel = {
         }
         const selectQuery = `SELECT DISTINCT member_id AS member_id FROM day WHERE day = ?;`;  
         connection.query(selectQuery,day, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -176,10 +152,8 @@ const RestaurantModel = {
         const values = [id, name];
     
         connection.query(insertQuery, values,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -191,13 +165,10 @@ const RestaurantModel = {
         }
         const insertQuery = `INSERT IGNORE INTO detail (name, address, price, placeid)
         VALUES (?, ?,?, ?)`;
-        // const values = [id, name];
     
         connection.query(insertQuery, restaurantInfo,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -209,13 +180,10 @@ const RestaurantModel = {
           return callback(error, null);
         }
         const selectQuery = `SELECT id FROM detail WHERE placeid = ?`;
-        // const values = [id, name];
     
         connection.query(selectQuery, place_id,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -229,10 +197,8 @@ const RestaurantModel = {
         const values = [userId,restaurant_id];
     
         connection.query(insertQuery, values,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -246,10 +212,8 @@ const RestaurantModel = {
         const values = [updatedRestaurant_id,userId,modifiedRestaurant_id];
     
         connection.query(updateQuery, values,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -266,10 +230,8 @@ const RestaurantModel = {
         INNER JOIN restaurant
         ON profile.member_id=restaurant.member_id;`
         connection.query(selectQuery,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -281,10 +243,8 @@ const RestaurantModel = {
         }
         const selectQuery = `select member_id from date where date = ?`;  
         connection.query(selectQuery,date, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -298,10 +258,8 @@ const RestaurantModel = {
           }
           const selectQuery = `select * from filter where member_id = ?`;  
           connection.query(selectQuery, member_id, (queryError, results) => {
-          // Release the connection back to the pool
           connection.release();
     
-          // Forward the callback with the query results or error
           callback(queryError, results);
         });
       });
@@ -314,10 +272,8 @@ const RestaurantModel = {
           }
         const selectQuery = `select * from date where member_id = ?`;  
         connection.query(selectQuery, member_id, (queryError, results) => {
-          // Release the connection back to the pool
           connection.release();
     
-          // Forward the callback with the query results or error
           callback(queryError, results);
         });
       });
@@ -332,10 +288,8 @@ const RestaurantModel = {
         const values = [gender,minage,maxage,lat,lng,id];
     
         connection.query(insertQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -350,10 +304,8 @@ const RestaurantModel = {
         const values = [gender,minage,maxage,lat,lng,id];
     
         connection.query(updateQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -368,10 +320,8 @@ const RestaurantModel = {
         const values = [date,time,id];
     
         connection.query(updateQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -385,21 +335,13 @@ const RestaurantModel = {
         const values = [modify,original,id];
     
         connection.query(updateQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
     }, 
-    // addDate: (date,time,id,callback)=>{
-        
-    //     const insertQuery = `INSERT INTO date (date,time,member_id) VALUES (?,?, ?)`;
-    //     const values = [date,time,id];
-    
-    //     connection.query(insertQuery, values, callback);
-    // },
+
     addDate: (date,time,id,callback)=>{
       pool.getConnection((error, connection) => {
         if (error) {
@@ -409,10 +351,8 @@ const RestaurantModel = {
         const values = [date,time,id];
     
         connection.query(insertQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -425,17 +365,13 @@ const RestaurantModel = {
           }
           const selectQuery = ` select member_id,detail.id,price from detail inner join restaurants ON detail.id =restaurants.restaurant_id where member_id = ?`;  
 
-          // const selectQuery = ` select * from restaurant where member_id = ?`;  
           connection.query(selectQuery, member_id, (queryError, results) => {
-          // Release the connection back to the pool
           connection.release();
     
-          // Forward the callback with the query results or error
           callback(queryError, results);
         });
       });
       },
-
 
 }
 
