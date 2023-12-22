@@ -19,8 +19,5 @@ EXPOSE 80
 # Install MySQL client
 RUN apt-get update && apt-get install -y default-mysql-client
 
-# Change ownership of the directory
-# RUN chown -R root:root /docker-entrypoint-initdb.d/
-
 # Define the command to run your application
 CMD ["npm", "start"]
