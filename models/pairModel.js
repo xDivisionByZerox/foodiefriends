@@ -25,25 +25,10 @@ const pool = mysql.createPool({
   user: dbUser,
   password: dbPassword,
   database: 'foodiefriend',
-  port: 3306, // MySQL default port
+  port: 3306,
   insecureAuth: true,
-  connectionLimit: 10, // Adjust based on your needs
+  connectionLimit: 10,
 });
-
-// Configure AWS SDK
-aws.config.update({
-  accessKeyId: awsID,
-  secretAccessKey:awsKEY,
-  region:awsRegion
-});
-
-// Configure AWS SDK
-aws.config.update({
-  accessKeyId: awsID,
-  secretAccessKey:awsKEY,
-  region:awsRegion
-});
-
 
 const PairModel={
     createPair: (USERA, USERB, restaurant, date, time, timestamp,status,callback)=>{
@@ -55,12 +40,9 @@ const PairModel={
         VALUES(?, ?,?, ?,?,?,?);`
         const values = [USERA, USERB, restaurant, date, time, timestamp,status];
 
-      // connection.query(selectQuery, member_id, callback);
       connection.query(insertQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -75,12 +57,9 @@ const PairModel={
         INNER JOIN PROFILE ON pairs.UserA = PROFILE.member_id
         INNER JOIN restaurant ON pairs.UserA = restaurant.member_id
         WHERE pairs.UserB = ?; `
-      // connection.query(selectQuery, member_id, callback);
       connection.query(selectQuery, member_id, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -93,10 +72,8 @@ const PairModel={
       const selectQuery = `select * from matches where USERA = ? and USERB = ?`;  
       const values = [USERB,USERA]
       connection.query(selectQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -111,10 +88,8 @@ const PairModel={
         const values = [status,USERA,USERB];
     
         connection.query(updateQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -127,10 +102,8 @@ const PairModel={
       const selectQuery = `SELECT * FROM matches WHERE status = ? AND (USERA = ? OR USERB = ?);`;  
       const values = [status,id,id]
       connection.query(selectQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -143,10 +116,8 @@ const PairModel={
       const selectQuery = `SELECT * FROM matches WHERE status = ? AND USERB = ?;`;  
       const values = [status,id]
       connection.query(selectQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -159,10 +130,8 @@ const PairModel={
       const selectQuery = `SELECT * FROM matches WHERE status = ? AND USERA = ?;`;  
       const values = [status,id]
       connection.query(selectQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -172,14 +141,10 @@ const PairModel={
         if (error) {
           return callback(error, null);
         }
-        const deleteQuery = `delete from matches where id = ?`;
-        // const values = [USERA, USERB];
-    
+        const deleteQuery = `delete from matches where id = ?`;    
         connection.query(deleteQuery, id,(queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
