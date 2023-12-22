@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
     user: "root",
     password: "sharon616",
     database: 'foodiefriend',
-    port: 3306, // MySQL default port
+    port: 3306,
     insecureAuth: true,
 });
 
