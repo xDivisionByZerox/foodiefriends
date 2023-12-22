@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Foodie Friends</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/index.css">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="image/x-icon" href="../img/speed-dating.png">
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  /* background-image: url("/w3images/mac.jpg"); */
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+        /* Your existing styles here */
+
+</style>
+</head>
+<body>
+
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-wide"><img src="../img/speed-dating.png" style="width: 30px;height: 30px;"> Foodie Friends</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right">
+      <!-- <a onclick="document.getElementById('contact').style.display='block'" class="w3-bar-item w3-button">ABOUT</a> -->
+      <button onclick="document.getElementById('signin').style.display='block'" class="w3-bar-item w3-button "><i class="fa fa-user"></i> LOGIN</button>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <!-- <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a> -->
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<!-- <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a onclick="document.getElementById('singin').style.display='block'" class="w3-bar-item w3-button">LOGIN</a>
+
+</nav> -->
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min divide-slate-300 w3-margin" style="display: flex;" id="home">
+  <div class="w3-text-white" style="margin:auto;">
+    <div class="w3-display-container">
+        <img class="w3-image w3-round-large w3-opacity-min" src="/img/bwink_ppl_08_single_02.jpg" alt="Buildings" width="600" height="394" style="object-fit: cover;height: 350px;">
+  </div> 
+</div>
+  <div class="w3-text-white" style="margin:auto;">
+    <!-- <span class="w3-jumbo w3-dark-grey">Start something that matters</span><br> -->
+    <div class="w3-xxlarge w3-text-black">Meet up and Eat out</div><br>
+    <div class="w3-large w3-text-black ">Having a blind date and sharing a meal together!</div>
+    <p><button id="startToday" onclick="document.getElementById('contact').style.display='block'"  class="w3-button w3-pale-yellow w3-padding-large  w3-border w3-large w3-opacity w3-hover-opacity-off">Start today</button></p>
+
+</div>
+
+</header>
+<!-- <div class="mask"></div> -->
+<!-- <p><buttonclass="w3-button w3-black">contact</button></p> -->
+<div id="contact" class="w3-modal" >
+  <div class="w3-modal-content w3-animate-top" style="width: 350px;">
+    <div class="w3-container w3-black">
+      <span onclick="document.getElementById('contact').style.display='none';" class="w3-button w3-display-topright w3-large" style="line-height: 47px;">x</span>
+      <h3>Sign up</h3>
+
+    </div>
+    <div class="w3-container">
+      <form method="post" class="signup_form">
+        <h3 class="signup_form_title"></h3>
+        <input type="text" name="email" class="email" placeholder="  a@gmail.com"/>
+        <br>
+        <input type="password" name="password" class="password" placeholder="  ****"/>
+        <input type="button" value="Creat Account" class="signup_form_btn w3-btn w3-border"  onclick="handleSignup();"/>
+        <p class="signup_form_msg"></p>
+        <p class="signup_form_switch" onclick="document.getElementById('contact').style.display='none';document.getElementById('signin').style.display='block';">Have an account already?click here and login</p>
+    </form> 
+
+    </div>
+  </div>
+</div>
+<div id="signin" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top" style="width: 350px;">
+    <div class="w3-container w3-black">
+      <span onclick="document.getElementById('signin').style.display='none'" class="w3-button w3-display-topright w3-large" style="line-height: 47px;">x</span>
+      <h3>Sign in</h3>
+    </div>
+    <div class="w3-container">
+      <form method="post" class="signin_form">
+        <h3 class="signup_form_title"></h3>
+        <input type="text" name="email" class="email" placeholder="  a@gmail.com"/>
+        <br>
+        <input type="password" name="password" class="password" placeholder="  ****"/>
+        <input type="button" value="SIGN IN" class="signin_form_btn w3-btn w3-border" onclick="handleSignin();"/>
+        <p class="signin_form_msg"></p>
+        <p class="signin_form_switch" onclick="document.getElementById('contact').style.display='block';document.getElementById('signin').style.display='none';">Haven't have account?click here and sign up</p>
+
+    </form> 
+    </div>
+  </div>
+</div>
+<!-- Promo Section - "We know design" -->
+<div class="w3-container w3-light-grey w3-center" style="padding:128px 16px;width: 100%;">
+    <div class="w3-row-padding w3-center">
+        <h3>How this works</h3>
+        <div class="w3-third">
+          <div class="w3-xxlarge">1</div>
+
+          <span class="w3-large">Choose your favorite restaurants</span>
+        </div>
+        <div class="w3-third">
+          <div class="w3-xxlarge">2</div>
+          <span class="w3-large">Select your available time and find some to eat out</span>
+        </div>
+        <div class="w3-third">
+          <div class="w3-xxlarge">3</div>
+          <span class="w3-large">Match and have a date!</span>
+        </div>
+      </div>
+  </div>
+
+<!-- Promo Section "Statistics" -->
+<div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+    <div class="w3-third">
+      <span class="w3-xxlarge">1000+</span>
+      <br>Users
+    </div>
+    <div class="w3-third">
+      <span class="w3-xxlarge">100+</span>
+      <br>Restaurants
+    </div>
+    <div class="w3-third">
+      <span class="w3-xxlarge">89+</span>
+      <br>Successful Matches
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+    <!-- <a class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Back</a> -->
+    <div class="w3-xlarge w3-section">
+      <i class="fa fa-github w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+  </footer>
+
+  </body>
+<script src="/js/login.js"></script>
+
+
+
+  </html>

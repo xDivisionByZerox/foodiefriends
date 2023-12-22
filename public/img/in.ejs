@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Main Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* to hide scrollbar */
+        }
+
+        #container {
+            display: flex;
+            height: 100vh; /* 100% of the viewport height */
+        }
+
+        #left-side {
+            flex: 1;
+            background-image: url('your-image.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        #right-side {
+            flex: 1;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #slash {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background-color: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #login-box {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left-side"></div>
+        <div id="slash"></div>
+        <div id="right-side">
+            <div id="login-box">
+                <!-- Your login form goes here -->
+                <h2>Login</h2>
+                <form action="login.php" method="post">
+                    <!-- Your form fields go here -->
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
