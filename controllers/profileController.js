@@ -16,11 +16,6 @@ require('dotenv').config();
 const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
-const awsID = process.env.AWS_KEY_ID;
-const awsKEY = process.env.AWS_SECRET_KEY;
-const awsRegion = process.env.AWS_REGION;
-
-
 
 const connection = mysql.createConnection({
   host: dbHost,
@@ -28,13 +23,6 @@ const connection = mysql.createConnection({
   password: dbPassword,
   database: 'foodiefriend',
   port: 3306, // MySQL default port
-});
-
-// Configure AWS SDK
-aws.config.update({
-  accessKeyId: awsID,
-  secretAccessKey:awsKEY,
-  region:awsRegion
 });
 
 const ProfileController = {
@@ -91,7 +79,6 @@ const ProfileController = {
   
     getCurrentUserProfileAndFilter: async (req, res) => {
       try {
-        // RestaurantController.createDate(req, res)
           let userID = decodeFromToken(req);
           let hasMatched = []
 
@@ -114,7 +101,6 @@ const ProfileController = {
             });
           
             if (_.isEmpty(MatchBefore)) {
-              // return res.status(200).json({"message":"cannot find any"});
             } else {
               MatchBefore.forEach((e) => {
                 if (e.USERA == userID) {
@@ -379,8 +365,6 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
           }
         });
         
-
-          // return
           Promise.all(promises)
             .then(() => {
               console.log(response2)
@@ -388,7 +372,6 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
               return res.status(200).json(response2);
             })
             .catch(error => {
-              // Handle errors
               console.error("Error:", error);
               return res.status(500).json({ error: "Internal Server Error" });
             });
@@ -416,7 +399,6 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
                   });
                   res.status(200).json({ ok: true });
               } catch (error) {
-                  // Handle errors
                   console.error('Error updating profile:', error);
                   res.status(500).json({ error: true, message: 'Internal Server Error' });
               }
