@@ -44,7 +44,6 @@ const UserController = {
 
   authenticateUser: async (req, res) => {
     try {
-        // Extract data from the request body
         const { email, password } = req.body;
 
         const results = await new Promise((resolve, reject) => {
@@ -61,10 +60,8 @@ const UserController = {
             return res.status(400).json({ error: true });
         }
 
-        // Continue with token generation or other logic
         const token = generateToken(results[0].id, results[0].name, email, password);
         console.log('Generated Token:', token);
-        // res.render("./views/page.ejs",{ token:token })
         res.status(200).json({ ok: true, token: token });
     } catch (error) {
         console.error('Error authenticating user:', error);
