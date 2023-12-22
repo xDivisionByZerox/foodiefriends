@@ -30,15 +30,6 @@ const pool = mysql.createPool({
   connectionLimit: 10, // Adjust based on your needs
 });
 
-
-// Configure AWS SDK
-aws.config.update({
-  accessKeyId: awsID,
-  secretAccessKey:awsKEY,
-  region:awsRegion
-});
-
-
 const ProfileModel = {
     
     newProfile: (nickname, gender,birthday,relationship,diet,member_id, callback) => {
@@ -52,10 +43,8 @@ const ProfileModel = {
       const values = [nickname, gender,birthday,relationship,diet,member_id];
   
       connection.query(insertQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -67,10 +56,8 @@ const ProfileModel = {
         }
       const selectQuery = `select * from profile where member_id = ?`;  
       connection.query(selectQuery, member_id, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -84,12 +71,9 @@ const ProfileModel = {
         `SELECT * FROM profile
         INNER JOIN filter ON profile.member_id = filter.member_id
         WHERE profile.member_id = ? `;  
-      // connection.query(selectQuery, member_id, callback);
       connection.query(selectQuery, member_id, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
@@ -104,30 +88,12 @@ const ProfileModel = {
       const values = [nickname,relationship,diet,member_id];
   
       connection.query(updateQuery, values, (queryError, results) => {
-        // Release the connection back to the pool
         connection.release();
   
-        // Forward the callback with the query results or error
         callback(queryError, results);
       });
     });
     },
-    // FilteringAll:(min,max,gender,diet,relationship,callback) => {
-        
-    //   const selectQuery = 
-    //     `SELECT *
-    //     FROM profile
-    //     WHERE
-    //       TIMESTAMPDIFF(YEAR, birthday, CURDATE()) BETWEEN ? AND ?
-    //       AND gender = ?
-    //       AND diet = ?
-    //       AND relationship = ?
-    //     ORDER BY member_id DESC;`;  
-    //     const values = [min,max,gender,diet,relationship];
-
-    //   connection.query(selectQuery, values, callback);
-    // },
-
 
     FilteringAll:(min, max, gender, diet, relationship, callback) => {
       // Acquire a connection from the pool
@@ -149,12 +115,9 @@ const ProfileModel = {
     
         const values = [min, max, gender, diet, relationship];
     
-        // Perform the query using the acquired connection
         connection.query(selectQuery, values, (queryError, results) => {
-          // Release the connection back to the pool
           connection.release();
     
-          // Forward the callback with the query results or error
           callback(queryError, results);
         });
       });
