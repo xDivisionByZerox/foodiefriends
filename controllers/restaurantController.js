@@ -72,11 +72,9 @@ const RestaurantController = {
     
     addRestaurants: async (req, res) => {
         const { name } = req.body;
-        // let restaurantList = req.body.name
         let userID = decodeFromToken(req);
     
         try {
-            // restaurantList.forEach(restaurant => {
                 for (const restaurant of name) {
 
                 console.log(restaurant)
@@ -128,16 +126,12 @@ const RestaurantController = {
                                 resolve(results);
                                 console.log("Restaurant add in")
                             }
-                        });
-                        // return res.status(500).json({ error: true, message: 'Cannot find filter data' });
-        
+                        });        
                 
             });
     
-            // Send response after all asynchronous operations are completed
             res.status(200).json({ ok: true });
         } catch (error) {
-            // Handle errors
             res.status(500).json({ error: true, message: 'Error creating restaurant' });
         }
     },
@@ -146,7 +140,6 @@ const RestaurantController = {
         const { former, name } = req.body;
         console.log(former)
         console.log(name)
-        // let restaurantList = req.body.name
         let userID = decodeFromToken(req);
     
         try {
@@ -158,7 +151,6 @@ const RestaurantController = {
                 await new Promise((resolve, reject) => {
                     RestaurantModel.ifRestaurantExist(restaurant.place_id, (err, results) => {
                         if (err) throw err
-                        // console.log(results)
                         if(_.isEmpty(results)){
                             RestaurantModel.addRestaurants(restaurantInfo, (err, results) => {
                                 if (err) {
@@ -179,7 +171,6 @@ const RestaurantController = {
         
                                 }
                             });
-                            // return res.status(500).json({ error: true, message: 'Cannot find filter data' });
             
                         }else{
                             console.log('restaurant created successfully:', results);
@@ -203,7 +194,6 @@ const RestaurantController = {
        res.status(200).json({ ok: true });
 
      } catch (error) {
-            // Handle errors
             res.status(500).json({ error: true, message: 'Error updated restaurant' });
         }
     },
@@ -294,7 +284,6 @@ const RestaurantController = {
                             throw err;
                         }
                         console.log('Date created successfully:', results);
-                        // Send a success response
                         res.status(200).json({ ok: true });
                     });
                 } else {
