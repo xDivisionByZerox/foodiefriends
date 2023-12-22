@@ -25,9 +25,9 @@ const pool = mysql.createPool({
   user: dbUser,
   password: dbPassword,
   database: 'foodiefriend',
-  port: 3306, // MySQL default port
+  port: 3306, 
   insecureAuth: true,
-  connectionLimit: 10, // Adjust based on your needs
+  connectionLimit: 10, 
 });
 
 const ProfileModel = {
