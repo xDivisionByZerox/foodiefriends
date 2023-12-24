@@ -5,10 +5,6 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 ## Table of Contents
 
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
