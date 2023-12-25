@@ -19,7 +19,6 @@ let chosedPlace;
 const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
 
 let popup_img = document.querySelector("#popup_restaurant_img")
-// addListBtn.src = place.photos[0].getUrl({maxWidth: 35, maxHeight: 35})
 let restaurants_container = document.querySelector("#restaurants_container")
 
 let restaurantList = []
@@ -35,19 +34,14 @@ const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 
-// Event listener for when the offcanvas is shown
 offcanvas._element.addEventListener('shown.bs.offcanvas', function () {
-// Change visibility to 'visible'
 document.getElementById('offcanvasBottom').style.visibility = 'visible';
 document.getElementById('offcanvasBottom').classList.add('position-absolute');
 
 });
 
-// Event listener for when the offcanvas is hidden
 offcanvas._element.addEventListener('hidden.bs.offcanvas', function () {
-// Change visibility to 'hidden'
 document.getElementById('offcanvasBottom').style.visibility = 'hidden';
-// document.getElementById('offcanvasBottom').classList.remove('position-absolute');
 
 });
 
@@ -86,9 +80,6 @@ document.querySelector(".sendRestaurant").addEventListener("submit",async(e)=>{
   
   })
   
-  
-
-
 async function createprofile(){
       let response = await fetch("api/profile",{
         method: 'POST',
@@ -113,13 +104,10 @@ async function createprofile(){
 }
 
 
-//是否登入
 async function login_check() {
   if (!token) {
-    // signin_state.textContent = "登入系統";
     return false;
   }else{
-    // signin_state.textContent = "登出系統";
     try {
       let response = await fetch("/api/user/auth", {
         method: 'GET',
@@ -137,7 +125,6 @@ async function login_check() {
 }
 }
 
-
 async function checkProfile(){
   let response = await fetch(`api/profile/${userId}`,{
     method: 'GET',
@@ -152,8 +139,6 @@ async function checkProfile(){
     //
   }
 }
-
-
 
 function createDayCheckboxes() {
   const dayCheckboxes = document.getElementById('dayCheckboxes');
@@ -190,13 +175,10 @@ function showToast(title,msg,color) {
     backgroundColor: color?'#FFC47E':'#DC8686',
     theme: 'light',
     color: '#FBF6EE',
-    // imageWidth: 30,
     icon: color?'fa fa-bell':'fa fa-close',
-    iconColor:"white", // Font Awesome icon class    animateInside: true,
+    iconColor:"white", 
     animateOutside: false,
-    // Other options...
   });
-    // Add a custom class to the iziToast message container
     const toastContainer = document.querySelector('.iziToast-container .iziToast-message');
   toastContainer.classList.add('custom-message-style');
 }
@@ -244,7 +226,7 @@ function initAutocomplete() {
     center: { lat: userLat?userLat:25.047388, lng: userLng?userLng:121.516082 },
     zoom: 15,
     mapTypeId: "roadmap",
-    mapTypeControl: false, // Set to false to hide the map type control
+    mapTypeControl: false, 
   });
   const placesService = new google.maps.places.PlacesService(map);
 
@@ -253,18 +235,10 @@ function initAutocomplete() {
 });
   map.addListener("click", (event) => {
     infowindow.close();
-    
-// Get the element using attribute selectors
-  // document.getElementById("lat").value = event.latLng.lat();
-  // document.getElementById("long").value = event.latLng.lng();
-  // console.log(event.placeId)
-// Use the getDetails method to retrieve information about the place
 let placeResult;
 placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
-    // Access the detailed information about the place
     place = placeResult
-    // offcanvas.style.display ="block"
 
     offcanvas.show()
     restaurantAdd.value = ''
@@ -276,17 +250,10 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
     photo = place.photos
     storeName.textContent = chosedPlace
     
-    // storeAddress.textContent = addr.text
     storePhone.textContent = phone
     storeAddress.textContent = addr
-    
-    // console.log(place.price_level,"PRICE")
-    // console.log(place.url)
-    // console.log(place.types)
-
     popup_img.src = place.photos?place.photos[0].getUrl({maxWidth: 1000, maxHeight: 1000}):"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0PDg0NDQ0NDQ0NDQ8NDQ4NFhEWFhURExMYHSggGBolGxUWITEhJSkrLi4uFx8zODMsNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAJ8BPgMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAAAgEDBAUH/8QAMBABAQACAAIGCAcBAQAAAAAAAAECEQMEEiExQVJxFTJRYWKRobEFExQigZKi0XL/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/RAAAAAAAAAADQ0GaNNAZo0oBOjSzQI0adDQOejTpo0Dno0vRoEaNLYCdGlMBg2sAAAAAAAAAAAAAAAAAAAAAayKBjRoDdEipATpulaboE6NLkNAjRpejQIZpemaBGmLsZYCBVTQZWNYAAAAAAAAAAAAAAAAAAAABFJioDWyEVAFSEipAZMVSNkVICZG6Xo0COizTthw7l1SW+UdOLyuWGPSuu3Wu2wHk0yx1sTYDlYyulibAc9JrpU0EJVUgAAAAAAAAAAAAAAAAAAAARcRF4gqKjIuA2RWMZHfg8HLL1cbff3fMESKmL28LkPHf4x/69Mxw4fZjd+7G2/MHi4XKZ5d2p7+p6ceUwx68rvz6ozPj8S+rhZ77La4ZY53rsyvnKD0Zc1hj1YzflNRWN/N4dl7bueV7nk/Ly8N+Vd+U3LZZdWey9oPBcU2PbzXBvStktl6+qb63C8HPwZf1oPNYmx1sRYDlU10sRkDlUrqAAAAAAAAAAAAAAAAAAAAAI6YucdMQXF4oi8Qev8AD5jc9ZSXc6t+17+Z5n8vUmPbOr2Pk8PKyyztllj6nN49PhzOd2sv47wOT4uWeWXSvdNTuis+a6Ns6O9X2uX4d25eUc+P6+XmD0fq/h+p+q+H6rnLY613+3byZTVs9lsB6f1Xw/Vl5v4fq8yuJhcdb75sHa858P1duX43T31a179vn16uQ7MvOfYHg4vrZed+7lXbi+tfO/dxoIrnXSudBzyRV5IoAAAAAAAAAAAAAAAAAAAAEdMXOOmILi8XOLgLj6n4fn0sLhe77V8qPVyXF6OePsv7b/IPXyWHRzzxvc48f18vN75w9Z3L24yXzj5/Mevl5g7Y8zlJrq8+9y2rluF07u+rO2+33PTxOWl7P2/YHPluFu7vZOz316eJw5lOvuVjjJJJ2RoPnc1h0curss3HbkOzLzn2bz+O8Zl7L9Kn8OvVl5wHh4vrXzv3csl8W/uy8793Ogioq7UZA55IXkgAAAAAAAAAAAAAAAAAAAACLiIqAuKiIqA6Sqlc5VSg+7yvE6eGN79avnHh5jDLp5axys32yVz5Tm/y5ZZuXr7dar0+kp4L/YDHmOJJqcPUnw5N/VcXwf5yPSM8H1PSM8F+YN/VcTwf5yZ+q4vg/wA5HpGeC/M9IzwfUE8Tj8TKWXDqvV6uTr+HY2TLcs652zTn6SngvzZ6Tngv9geHi392X/q/dztbnlu2+22otBlTk2poIqVVIAAAAAAAAAAAAAAAAAAAAEVEqBqpUNBcqtucqtguVUrnK3YOkrduezYOmzbn0i0FbZck7ZsG2stZtloFqaUBiWsAAAAAAAAAAAAAAAAAAAAAaxoDWAKakBcptICzaGgrZtIDdm07Ng3bGAAMArG1gAAAAAAAAAAAAAAAAAAAABsAaMAaMAUJAUJAUJAUJAaMAaMAbWAAAAAAAAAAAD//2Q=="
 
-    // currentPlace = place
   } else {
     console.error('Error fetching place details:', status);
   }
@@ -296,12 +263,9 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
 
   });
   
-  // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
   const searchBox = new google.maps.places.SearchBox(input);
 
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
   });
@@ -309,8 +273,6 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
   let markers = [];
   let pac
 
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
   searchBox.addListener("places_changed", () => {
     const places = searchBox.getPlaces();
 
@@ -321,7 +283,6 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
     markers.forEach(marker => marker.setMap(null));
     markers.length = 0;
 
-    // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
 
     places.forEach((place) => {
@@ -336,9 +297,7 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
         phone = place.international_phone_number
         addr = place.formatted_address
         photo = place.photos
-        storeName.textContent = chosedPlace
-   
-        // storeAddress.textContent = addr.text
+        storeName.textContent = chosedPlac   
         storePhone.textContent = phone
         storeAddress.textContent = addr
 
@@ -359,27 +318,9 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
         position: place.geometry.location,
       });
 
-
-      
-      // Create a marker for each place.
-      // markers.push(
-      //   new google.maps.Marker({
-      //     map,
-      //     icon: icon,
-      //     title: place.name,
-      //     position: place.geometry.location,
-      //   }),
-      // );
-      // console.log(markers)
-      // Adding a click event listener to the marker
-    // Add a click event listener to the marker
-
       const service = new google.maps.places.PlacesService(map);
     marker.addListener('click',async function() {
-      // console.log(infowindow)
-    
 
-      // Access the place details when the marker is clicked
   // Access the place details when the marker is clicked
   service.getDetails({placeId: place.place_id,},async function(placeDetails) {
     offcanvas.show()
@@ -393,7 +334,6 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
     photo = place.photos
     storeName.textContent = chosedPlace
 
-    // storeAddress.textContent = addr.text
     storePhone.textContent = phone
     storeAddress.textContent = addr
 
@@ -401,12 +341,7 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
 
     infowindow.setContent(`<strong>${place.name}</strong><br>${place.formatted_address}`);
 
-    // Open the info window
     infowindow.open(map, marker);
-    // infowindow.close();
-// setTimeout(() => {
-//   infowindow.close();
-// }, 1500);
   });
     });
 
@@ -427,18 +362,13 @@ placesService.getDetails({ placeId: event.placeId }, (placeResult, status) => {
   });
 }
 
-
-
-
 window.initAutocomplete = initAutocomplete;
 
 
 
 
 addListBtn.addEventListener("click",async()=>{
-// restaurants_container.innerHTML=""
 
-  // cacheResataurant = []
   cacheResataurant.push(currentPlace.name)
   restaurantList.push({
     "name":currentPlace.name,
@@ -461,7 +391,6 @@ if(hasFoodOrRestaurant){
     restaurantList.splice(index, 1);
     showToast("","Please choose different restaurants",false)
 
-    // alert("You need to add different restaurants")
     }else{
 
       let restaurant_img = e.photo.hasOwnProperty('getUrl')?e.photo.getUrl({ maxWidth: 315, maxHeight: 315 }): "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0PDg0NDQ0NDQ0NDQ8NDQ4NFhEWFhURExMYHSggGBolGxUWITEhJSkrLi4uFx8zODMsNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAJ8BPgMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAAAgEDBAUH/8QAMBABAQACAAIGCAcBAQAAAAAAAAECEQMEEiExQVJxFTJRYWKRobEFExQigZKi0XL/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/RAAAAAAAAAADQ0GaNNAZo0oBOjSzQI0adDQOejTpo0Dno0vRoEaNLYCdGlMBg2sAAAAAAAAAAAAAAAAAAAAAayKBjRoDdEipATpulaboE6NLkNAjRpejQIZpemaBGmLsZYCBVTQZWNYAAAAAAAAAAAAAAAAAAAABFJioDWyEVAFSEipAZMVSNkVICZG6Xo0COizTthw7l1SW+UdOLyuWGPSuu3Wu2wHk0yx1sTYDlYyulibAc9JrpU0EJVUgAAAAAAAAAAAAAAAAAAAARcRF4gqKjIuA2RWMZHfg8HLL1cbff3fMESKmL28LkPHf4x/69Mxw4fZjd+7G2/MHi4XKZ5d2p7+p6ceUwx68rvz6ozPj8S+rhZ77La4ZY53rsyvnKD0Zc1hj1YzflNRWN/N4dl7bueV7nk/Ly8N+Vd+U3LZZdWey9oPBcU2PbzXBvStktl6+qb63C8HPwZf1oPNYmx1sRYDlU10sRkDlUrqAAAAAAAAAAAAAAAAAAAAAI6YucdMQXF4oi8Qev8AD5jc9ZSXc6t+17+Z5n8vUmPbOr2Pk8PKyyztllj6nN49PhzOd2sv47wOT4uWeWXSvdNTuis+a6Ns6O9X2uX4d25eUc+P6+XmD0fq/h+p+q+H6rnLY613+3byZTVs9lsB6f1Xw/Vl5v4fq8yuJhcdb75sHa858P1duX43T31a179vn16uQ7MvOfYHg4vrZed+7lXbi+tfO/dxoIrnXSudBzyRV5IoAAAAAAAAAAAAAAAAAAAAEdMXOOmILi8XOLgLj6n4fn0sLhe77V8qPVyXF6OePsv7b/IPXyWHRzzxvc48f18vN75w9Z3L24yXzj5/Mevl5g7Y8zlJrq8+9y2rluF07u+rO2+33PTxOWl7P2/YHPluFu7vZOz316eJw5lOvuVjjJJJ2RoPnc1h0curss3HbkOzLzn2bz+O8Zl7L9Kn8OvVl5wHh4vrXzv3csl8W/uy8793Ogioq7UZA55IXkgAAAAAAAAAAAAAAAAAAAACLiIqAuKiIqA6Sqlc5VSg+7yvE6eGN79avnHh5jDLp5axys32yVz5Tm/y5ZZuXr7dar0+kp4L/YDHmOJJqcPUnw5N/VcXwf5yPSM8H1PSM8F+YN/VcTwf5yZ+q4vg/wA5HpGeC/M9IzwfUE8Tj8TKWXDqvV6uTr+HY2TLcs652zTn6SngvzZ6Tngv9geHi392X/q/dztbnlu2+22otBlTk2poIqVVIAAAAAAAAAAAAAAAAAAAAEVEqBqpUNBcqtucqtguVUrnK3YOkrduezYOmzbn0i0FbZck7ZsG2stZtloFqaUBiWsAAAAAAAAAAAAAAAAAAAAAaxoDWAKakBcptICzaGgrZtIDdm07Ng3bGAAMArG1gAAAAAAAAAAAAAAAAAAAABsAaMAaMAUJAUJAUJAUJAaMAaMAbWAAAAAAAAAAAD//2Q=="
@@ -488,7 +417,6 @@ if(hasFoodOrRestaurant){
     e=>{
       e.addEventListener("click", () => {
         $('#restaurantModal').modal('show');
-        // modifiedRestaurant = item
       });
     }
   )
@@ -504,15 +432,8 @@ else{
   restaurantList.splice(index, 1);
   showToast("","You only can add restaurant",false)
 
-    // alert("You only can add restaurant")
 }
 
-  // if(restaurantList.length>= 2 && e.name == restaurantList[index-1].name){
-  //   cacheResataurant.splice(index, 1)
-  
-  //   restaurantList.splice(index, 1);
-  //     alert("You need to add different restaurants")}
-  // }
 }
 )
 offcanvas.hide();
@@ -550,7 +471,6 @@ restaurantList.forEach(place => delete place.photo);
   if(cacheResataurant.length<3){
     showToast("","You need to add three restaurants before matching.",false)
 
-    // alert("You need to add three restaurants before matching.")
   }else{
   let response = await fetch('/api/restaurants',{
     method: 'POST',
