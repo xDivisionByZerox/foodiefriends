@@ -5,6 +5,10 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 ## Table of Contents
 
 - [Features](#features)
+- [Techniques](#techniques)
+
+- [Architecture and Deployment Details](#architecture-and-deployment-details)
+
 
 ## Features
 
@@ -29,17 +33,19 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
    - Report and block features to maintain a safe and enjoyable community.
 
 6. **Mobile Accessibility:**
-   - Enjoy a seamless experience on the go with a mobile-responsive design.
+   - Enjoy a seamless experience on the go with a **mobile-responsive design**.
    - Access Foodie Friends from your smartphone or tablet for convenience.
 
 7. **Integration with Maps:**
-    - Easily locate and navigate to meetup locations with integrated map features.
-    - Explore the area surrounding restaurants and discover nearby culinary delights.
+    - Utilized Google Maps API for detailed place searches
+    - Enhance user experience by incorporating the Google Maps API, enabling users to easily locate and navigate to meetup locations. Additionally, explore the surrounding area to discover nearby culinary delights, enriching the overall exploration of local restaurants.
 
-## Installation
+
+## Techniques
+
+
+## Architecture and Deployment Details
 
 Provide step-by-step instructions on how to install and set up your project. Include any dependencies that need to be installed.
 
-```bash
-# Example installation commands
-npm install
+
