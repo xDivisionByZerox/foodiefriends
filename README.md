@@ -70,11 +70,6 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
   - Ensured a seamless user experience across various devices using responsive design principles.
 
 
-## Demo
-<p align="center">
-  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/a0e16c48-d5aa-470f-8a6c-7f557d6e078c" alt="demo">
-</p>
-
 ## Architecture and Deployment Details
 
 Provide step-by-step instructions on how to install and set up your project. Include any dependencies that need to be installed.
