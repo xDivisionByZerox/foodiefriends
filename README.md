@@ -48,10 +48,11 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 Provide step-by-step instructions on how to install and set up your project. Include any dependencies that need to be installed.
 <p align="center">
-![fdErd](https://github.com/ChennXIao/foodiefriends/assets/61040179/c8db8105-f36a-4082-8390-480bd95bed1e)
+  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/c8db8105-f36a-4082-8390-480bd95bed1e" alt="fdErd">
 </p>
 <p align="center">
-![system_design drawio](https://github.com/ChennXIao/foodiefriends/assets/61040179/e928ee12-9645-4f7b-8113-0c20352df48a)
+  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/e928ee12-9645-4f7b-8113-0c20352df48a" alt="system_design">
 </p>
+
 
 
