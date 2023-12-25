@@ -72,7 +72,7 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 ## Demo
 <p align="center">
-  <img style="width:500px" src="https://github.com/ChennXIao/foodiefriends/assets/61040179/a0e16c48-d5aa-470f-8a6c-7f557d6e078c" alt="demo">
+  <img style="width=500px" src="https://github.com/ChennXIao/foodiefriends/assets/61040179/a0e16c48-d5aa-470f-8a6c-7f557d6e078c" alt="demo">
 </p>
 
 ## Architecture and Deployment Details
