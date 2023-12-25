@@ -2,6 +2,7 @@ let signupForm = document.querySelector(".signup_form");
 
 let signinForm = document.querySelector(".signin_form"); 
 let user_result;
+let userId;
 // let token = localStorage.getItem('token');
 let signin_state = document.querySelector("#startToday")
 let order_state = document.querySelector(".navbar-btn_order")
@@ -13,6 +14,18 @@ let signup_form_closing = document.querySelector(".signup_form_closing")
 let signin_form_closing = document.querySelector(".signin_form_closing")
 let mask = document.querySelector(".mask")
 let token = localStorage.getItem("token")
+
+document.addEventListener("DOMContentLoaded",async()=>{
+  await login_check()
+  console.log(userId)
+  if(!userId){
+    // window.location.href = "/"
+  }else{
+    window.location.href = "/match"
+  }
+  })
+
+
 
 function handleSignup(){
     let formData = new FormData(signupForm);
@@ -134,14 +147,12 @@ async function login_check() {
       });
 
       let result  = await response.json();
-      console.log(result)
-      return result;
+      userId = result.id
+
+      return result.id;
     } catch (error) {
       // console.error("Error:", error);
     }
 }
 }
-
-user_result = login_check();
-console.log(user_result)
 
