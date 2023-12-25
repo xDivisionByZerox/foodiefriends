@@ -43,6 +43,30 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 ## Techniques
 
+- **Data Visualization**: Utilized libraries like Matplotlib and Seaborn to create insightful visualizations.
+  
+- **Machine Learning Models**:
+  - Implemented a linear regression model for predicting user preferences.
+  - Employed a neural network using TensorFlow for advanced pattern recognition.
+  
+- **RESTful API Development**:
+  - Built a RESTful API using Flask for seamless communication with the backend.
+  
+- **Database Optimization**:
+  - Employed indexing and caching strategies to enhance database query performance.
+
+- **User Authentication**:
+  - Implemented OAuth2 authentication for secure user access.
+  - Integrated JWT (JSON Web Tokens) for stateless authentication.
+
+- **Containerization with Docker**:
+  - Containerized the application using Docker for easy deployment and scalability.
+
+- **Continuous Integration (CI)**:
+  - Configured CI/CD pipelines with Travis CI to automate testing and deployment.
+
+- **Responsive Design**:
+  - Ensured a seamless user experience across various devices using responsive design principles.
 
 ## Architecture and Deployment Details
 
