@@ -44,7 +44,8 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 ## Techniques
 
-- **Data Visualization**: Utilized libraries like Matplotlib and Seaborn to create insightful visualizations.
+- **Data Visualization**: Experienced in leveraging Node.js to construct backend systems, specializing in the development of RESTful APIs to ensure the efficiency and scalability of web applications.
+
   
 - **Machine Learning Models**:
   - Implemented a linear regression model for predicting user preferences.
@@ -57,8 +58,7 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
   - Employed indexing and caching strategies to enhance database query performance.
 
 - **User Authentication**:
-  - Implemented OAuth2 authentication for secure user access.
-  - Integrated JWT (JSON Web Tokens) for stateless authentication.
+  - Utilized user authentication and validation through JSON Web Tokens (JWT), maintaining secure and reliable access control for web applications.Integrated JWT (JSON Web Tokens) for stateless authentication.
 
 - **Containerization with Docker**:
   - Containerized the application using Docker for easy deployment and scalability.
@@ -72,7 +72,7 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 ## Demo
 <p align="center">
-  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/a0e16c48-d5aa-470f-8a6c-7f557d6e078c" alt="demo">
+  <img style="width:500px" src="https://github.com/ChennXIao/foodiefriends/assets/61040179/a0e16c48-d5aa-470f-8a6c-7f557d6e078c" alt="demo">
 </p>
 
 ## Architecture and Deployment Details
