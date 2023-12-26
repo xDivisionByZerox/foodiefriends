@@ -136,7 +136,7 @@ app.get('/getPlaceDetails/:placeId', async (req, res) => {
 
 
 // Routes
-const userRoute = require('./routes/user');
+const userRoute = require('./src/routes/user');
 const { Console } = require('console');
 app.use(userRoute);
 
