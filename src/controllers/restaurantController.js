@@ -6,7 +6,7 @@ const { UserController, decodeFromToken } = require('../controllers/userControll
 const jwt = require('jsonwebtoken');
 const secretKey = 'your-secret-key';
 const _ = require("lodash");
-const PairModel = require('../models/pairModel');
+const PairModel = require('../../models/pairModel');
 
 
 
