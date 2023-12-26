@@ -63,16 +63,12 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 - **Containerization with Docker**:
   - Containerized the application using Docker for easy deployment and scalability.
 
-- **Continuous Integration (CI)**:
-  - Configured CI/CD pipelines with Travis CI to automate testing and deployment.
-
 - **Responsive Design**:
-  - Ensured a seamless user experience across various devices using responsive design principles.
+  - Ensured a user experience across various devices using responsive design principles.
 
 
 ## Architecture and Deployment Details
 
-Provide step-by-step instructions on how to install and set up your project. Include any dependencies that need to be installed.
 <p align="center">
   <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/c8db8105-f36a-4082-8390-480bd95bed1e" alt="fdErd">
 </p>
