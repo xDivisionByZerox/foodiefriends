@@ -6,6 +6,7 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 - [Features](#features)
 - [Techniques](#techniques)
+- [Demo](#demo)
 
 - [Architecture and Deployment Details](#architecture-and-deployment-details)
 
@@ -43,9 +44,40 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 ## Techniques
 
+- **Data Visualization**: Experienced in leveraging Node.js to construct backend systems, specializing in the development of RESTful APIs to ensure the efficiency and scalability of web applications.
+
+  
+- **Machine Learning Models**:
+  - Implemented a linear regression model for predicting user preferences.
+  - Employed a neural network using TensorFlow for advanced pattern recognition.
+  
+- **RESTful API Development**:
+  - Built a RESTful API using Flask for seamless communication with the backend.
+  
+- **Database Optimization**:
+  - Employed indexing and caching strategies to enhance database query performance.
+
+- **User Authentication**:
+  - Utilized user authentication and validation through JSON Web Tokens (JWT), maintaining secure and reliable access control for web applications.Integrated JWT (JSON Web Tokens) for stateless authentication.
+
+- **Containerization with Docker**:
+  - Containerized the application using Docker for easy deployment and scalability.
+
+- **Continuous Integration (CI)**:
+  - Configured CI/CD pipelines with Travis CI to automate testing and deployment.
+
+- **Responsive Design**:
+  - Ensured a seamless user experience across various devices using responsive design principles.
+
 
 ## Architecture and Deployment Details
 
 Provide step-by-step instructions on how to install and set up your project. Include any dependencies that need to be installed.
+<p align="center">
+  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/c8db8105-f36a-4082-8390-480bd95bed1e" alt="fdErd">
+</p>
+<p align="center">
+  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/e928ee12-9645-4f7b-8113-0c20352df48a" alt="system_design">
+</p>
 
 
