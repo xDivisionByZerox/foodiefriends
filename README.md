@@ -44,25 +44,28 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 ## Techniques
 
-- **Deployment**: 
+- **Node.js Backend and RESTful API**: 
    - Experienced in leveraging **Node.js** to construct backend systems, specializing in the development of **RESTful APIs** to ensure the efficiency and scalability of web applications.
 
 - **Recommendation System**: 
-   -Implement a **Collaborative Filtering algorithm** to enable users to find like-minded individuals with similar restaurant tastes.
+   - Implement a **Collaborative Filtering algorithm** to enable users to find like-minded individuals with similar restaurant tastes.
   
-- **Database**:
-  - Utilize MySQL and AWS RDS for a reliable and scalable database storage.
+- **Database Management**:
+  - Utilize **MySQL** and **AWS RDS(Relational Database System)** for a reliable and scalable database storage.
+  - Implemented third normal form in the database to optimize data organization and enhance efficiency. 
   - Employed indexing to enhance database query performance.
 
+- **Unit Testing with Jest**:
+  - Implement **Jest** for unit testing the user authentication route to ensure the reliability of the authentication process.
+
 - **User Authentication**:
-  - Utilized user authentication and validation through JSON Web Tokens (JWT), maintaining secure and reliable access control for web applications.Integrated JWT (JSON Web Tokens) for stateless authentication.
+  - Utilized user authentication and validation through **JSON Web Tokens (JWT)**, maintaining secure and reliable access control for web applications.
 
 - **Containerization with Docker**:
-  - Containerized the application using Docker for easy deployment and scalability.
+  - Containerized the application using **Docker** and deploy through **AWS EC2**.
 
-- **Responsive Design**:
-  - Ensured a user experience across various devices using responsive design principles.
-
+- **Responsive Design Principles**:
+  - Ensured user experience across various devices using responsive design principles.
 
 ## Architecture and Deployment Details
 
