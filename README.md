@@ -44,18 +44,15 @@ Foodie Friends is not just a dating website; it's a platform that brings people 
 
 ## Techniques
 
-- **Data Visualization**: Experienced in leveraging Node.js to construct backend systems, specializing in the development of RESTful APIs to ensure the efficiency and scalability of web applications.
+- **Deployment**: 
+   - Experienced in leveraging **Node.js** to construct backend systems, specializing in the development of **RESTful APIs** to ensure the efficiency and scalability of web applications.
 
+- **Recommendation System**: 
+   -Implement a **Collaborative Filtering algorithm** to enable users to find like-minded individuals with similar restaurant tastes.
   
-- **Machine Learning Models**:
-  - Implemented a linear regression model for predicting user preferences.
-  - Employed a neural network using TensorFlow for advanced pattern recognition.
-  
-- **RESTful API Development**:
-  - Built a RESTful API using Flask for seamless communication with the backend.
-  
-- **Database Optimization**:
-  - Employed indexing and caching strategies to enhance database query performance.
+- **Database**:
+  - Utilize MySQL and AWS RDS for a reliable and scalable database storage.
+  - Employed indexing to enhance database query performance.
 
 - **User Authentication**:
   - Utilized user authentication and validation through JSON Web Tokens (JWT), maintaining secure and reliable access control for web applications.Integrated JWT (JSON Web Tokens) for stateless authentication.
