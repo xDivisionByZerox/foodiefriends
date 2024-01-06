@@ -1,6 +1,6 @@
 # Foodie Friends
 
-Foodie Friends is a platform that brings people together based on their shared love for good food. Discover, connect, and meet up with like-minded individuals who appreciate the same restaurants and culinary experiences.
+Foodie Friends is more than a typical dating app. Connect instantly with individuals who share your passion for good food. Skip the small talk and invite someone with similar tastes for an immediate real date experience. Discover, connect, and enjoy culinary adventures with like-minded food enthusiasts.
 
 #### Website URL:
 https://foodiefriends.online/
@@ -10,8 +10,8 @@ https://foodiefriends.online/
 - [Features](#features)
 - [Techniques](#techniques)
 - [Demo](#demo)
-
 - [Architecture and Deployment Details](#architecture-and-deployment-details)
+- [Contact](#contact)
 
 
 ## Features
@@ -34,7 +34,7 @@ https://foodiefriends.online/
 - **Node.js Backend and RESTful API**: 
    - Experienced in leveraging **Node.js** and **express.js** to construct backend systems, specializing in the development of **RESTful APIs** to ensure the efficiency and scalability of web applications.
 
-- **Recommendation System**: 
+- **Recommendation System-Collaborative Filtering algorithm**: 
    - Implement a **Collaborative Filtering algorithm** to enable users to find like-minded individuals with similar restaurant tastes.
   
 - **Database Management**:
@@ -55,9 +55,11 @@ https://foodiefriends.online/
 - **Entering Personal Information and Selecting Favorite Restaurants**: 
    - Users fill out basic information to meet essential criteria and select restaurants to match with people who share similar tastes.
 
-- **Recommendation System**: 
-   - Implement a **Collaborative Filtering algorithm** to enable users to find like-minded individuals with similar restaurant tastes.
-  
+- **Match and Invite**: 
+   - Click **Invite** to send an invitation to the potential date, while the listed restaurants are selected based on the preferences of similar users.
+
+- **Date Management**: 
+   - Match results enable users to view date information and manage date cancellations.
 
 ## Architecture and Deployment Details
 
@@ -70,5 +72,9 @@ https://foodiefriends.online/
 <p align="center">
   <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/da8eba48-d297-4164-bb08-92776add9d82" alt="system_design">
 </p>
+
+## Contact
+Xiao Qing, Chen
+E-mail: sharon616616616616@gmail.com
 
 
