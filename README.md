@@ -34,7 +34,7 @@ https://foodiefriends.online/
 - **Node.js Backend and RESTful API**: 
    - Experienced in leveraging **Node.js** and **express.js** to construct backend systems, specializing in the development of **RESTful APIs** to ensure the efficiency and scalability of web applications.
 
-- **Recommendation System-Collaborative Filtering algorithm**: 
+- **Recommendation System - Collaborative Filtering algorithm**: 
    - Implement a **Collaborative Filtering algorithm** to enable users to find like-minded individuals with similar restaurant tastes.
   
 - **Database Management**:
@@ -74,7 +74,6 @@ https://foodiefriends.online/
 </p>
 
 ## Contact
-Xiao Qing, Chen
-E-mail: sharon616616616616@gmail.com
 
-
+- **Email:** [sharon616616616616@gmail.com](mailto:sharon616616616616@gmail.com)
+- **GitHub:** [ChennXIao](https://github.com/ChennXIao)
