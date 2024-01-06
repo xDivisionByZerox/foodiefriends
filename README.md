@@ -1,4 +1,4 @@
-![time](https://github.com/ChennXIao/foodiefriends/assets/61040179/2c3d2ef3-d143-422a-a629-ed8891187bc4)# Foodie Friends
+# Foodie Friends
 
 Foodie Friends is more than a typical dating app. Connect instantly with individuals who share your passion for good food. Skip the small talk and invite someone with similar tastes for an immediate real date experience. Discover, connect, and enjoy culinary adventures with like-minded food enthusiasts.
 
@@ -54,19 +54,23 @@ https://foodiefriends.online/
 ## Demo
 - **Entering Personal Information and Selecting Favorite Restaurants**: 
    - Users fill out basic information to meet essential criteria and select restaurants to match with people who share similar tastes.
+
 ![select](https://github.com/ChennXIao/foodiefriends/assets/61040179/1aceba83-79d5-42ed-880d-8f7dae8be924)
 
 - **Filter**: 
    - Customize your date preferences by filtering based on preferred age and gender.
    - Choose a specific day and time to propose an invitation to someone special.
+
 ![time](https://github.com/ChennXIao/foodiefriends/assets/61040179/628c8bcf-01dd-407e-b397-25eb8a5afb9c)
 
 - **Match and Invite**: 
    - Click **Invite** to send an invitation to the potential date, while the listed restaurants are selected based on the preferences of similar users.
+
 ![invite](https://github.com/ChennXIao/foodiefriends/assets/61040179/34aa6075-35f1-4f9f-9917-e80e5d1724dc)
 
 - **Date Management**: 
    - Match results enable users to view date information and manage date cancellations.
+
 ![date](https://github.com/ChennXIao/foodiefriends/assets/61040179/1ce2b28a-1fc3-46ed-935d-150c01f91f41)
 
 ## Architecture and Deployment Details
