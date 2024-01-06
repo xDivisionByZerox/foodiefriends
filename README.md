@@ -71,7 +71,7 @@ https://foodiefriends.online/
 - **Date Management**: 
    - Match results enable users to view date information and manage date cancellations.
 
-![date](https://github.com/ChennXIao/foodiefriends/assets/61040179/1ce2b28a-1fc3-46ed-935d-150c01f91f41)
+![dateM](https://github.com/ChennXIao/foodiefriends/assets/61040179/8b30c6fb-0b04-426a-8547-1814b2a6037d)
 
 ## Architecture and Deployment Details
 
