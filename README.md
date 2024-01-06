@@ -1,8 +1,8 @@
 # Foodie Friends
 
-Foodie Friends is not just a dating website; it's a platform that brings people together based on their shared love for good food. Discover, connect, and meet up with like-minded individuals who appreciate the same restaurants and culinary experiences.
+Foodie Friends is a platform that brings people together based on their shared love for good food. Discover, connect, and meet up with like-minded individuals who appreciate the same restaurants and culinary experiences.
 
-#### link below:
+#### Website URL:
 https://foodiefriends.online/
 
 ## Table of Contents
@@ -26,14 +26,8 @@ https://foodiefriends.online/
 3. **Swiping Mechanism:**
    - Implement a swiping mechanism for users to browse through profiles. Users can express interest by clicking to swipe right or skip by swiping left, vice versa, creating a gamified and engaging experience.
 
-4. **Privacy and Safety:**
-   - Implement strict privacy controls to ensure user data protection.
-   - Report and block features to maintain a safe and enjoyable community.
-
-5. **Integration with Maps:**
+4. **Integration with Maps:**
     - Utilized Google Maps API for detailed place searches
-    - Enhance user experience by incorporating the Google Maps API, enabling users to easily locate and navigate to meetup locations. Additionally, explore the surrounding area to discover nearby culinary delights, enriching the overall exploration of local restaurants.
-
 
 ## Techniques
 
@@ -57,14 +51,22 @@ https://foodiefriends.online/
 - **Containerization with Docker**:
   - Containerized the application using **Docker** and deploy through **AWS EC2**.
 
-- **Responsive Design Principles**:
-  - Ensured user experience across various devices using responsive design principles.
+## Demo
+- **Entering Personal Information and Selecting Favorite Restaurants**: 
+   - Users fill out basic information to meet essential criteria and select restaurants to match with people who share similar tastes.
+
+- **Recommendation System**: 
+   - Implement a **Collaborative Filtering algorithm** to enable users to find like-minded individuals with similar restaurant tastes.
+  
 
 ## Architecture and Deployment Details
 
+- **Entity Relationship Diagram (ERD)**: 
 <p align="center">
   <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/c8db8105-f36a-4082-8390-480bd95bed1e" alt="fdErd">
 </p>
+
+- **Server Architecture**: 
 <p align="center">
   <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/da8eba48-d297-4164-bb08-92776add9d82" alt="system_design">
 </p>
