@@ -55,11 +55,23 @@ https://foodiefriends.online/
 - **Entering Personal Information and Selecting Favorite Restaurants**: 
    - Users fill out basic information to meet essential criteria and select restaurants to match with people who share similar tastes.
 
+![select](https://github.com/ChennXIao/foodiefriends/assets/61040179/1aceba83-79d5-42ed-880d-8f7dae8be924)
+
+- **Filter**: 
+   - Customize your date preferences by filtering based on preferred age and gender.
+   - Choose a specific day and time to propose an invitation to someone special.
+
+![time](https://github.com/ChennXIao/foodiefriends/assets/61040179/628c8bcf-01dd-407e-b397-25eb8a5afb9c)
+
 - **Match and Invite**: 
    - Click **Invite** to send an invitation to the potential date, while the listed restaurants are selected based on the preferences of similar users.
 
+![invite](https://github.com/ChennXIao/foodiefriends/assets/61040179/34aa6075-35f1-4f9f-9917-e80e5d1724dc)
+
 - **Date Management**: 
    - Match results enable users to view date information and manage date cancellations.
+
+![dateM](https://github.com/ChennXIao/foodiefriends/assets/61040179/8b30c6fb-0b04-426a-8547-1814b2a6037d)
 
 ## Architecture and Deployment Details
 
