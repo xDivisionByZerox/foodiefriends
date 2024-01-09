@@ -1,5 +1,5 @@
 
-let token = localStorage.getItem('token');
+let token = localStorage.getItem('token')?localStorage.getItem('token'):document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
 let userId;
 let cardIndex;
 const buttons = document.querySelectorAll('.nav-link');

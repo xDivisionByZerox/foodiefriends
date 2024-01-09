@@ -1,7 +1,7 @@
   // Get all buttons with class "nav-link"
   //detect if the web store the token right now or not
 let userId;
-let token = localStorage.getItem('token');
+let token = localStorage.getItem('token')?localStorage.getItem('token'):document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
 let restaurants = document.querySelectorAll(".list-group-item")
 
 let store_name = document.querySelector("#store_name")
@@ -198,6 +198,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
           logoutBtn.addEventListener("click",()=>{
           localStorage.removeItem("token");
+          deleteCookie('authToken');
+
           window.location.href ="/"; 
           })
   
@@ -830,6 +832,10 @@ function createDayCheckboxes() {
     dayCheckboxes.appendChild(label);
   }
 }
+}
+
+function deleteCookie(cookieName) {
+  document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
 createDayCheckboxes();

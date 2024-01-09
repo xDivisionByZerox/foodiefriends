@@ -132,7 +132,7 @@ function handleOrderbtn(){
 
 //detect if the web store the token right now or not
 async function login_check() {
-  let token = localStorage.getItem('token');
+  let token = localStorage.getItem('token')?localStorage.getItem('token'):document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
   if (!token) {
     // signin_state.textContent = "登入系統";
     return false;
