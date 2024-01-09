@@ -5,11 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/index.css">
+<meta name="google-signin-client_id" content="99538840639-ljcarola6cro2oen0v6nc4d031mt9dj2.apps.googleusercontent.com">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="icon" type="image/x-icon" href="../img/speed-dating.png">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
@@ -114,6 +116,9 @@ body, html {
         <input type="text" name="email" class="email" placeholder="  a@gmail.com"/>
         <br>
         <input type="password" name="password" class="password" placeholder="  ****"/>
+        <a href="/auth/google" class="w3-btn w3-border w3-centered">
+          <i class="fa fa-google fa-fw"></i> Login with Google
+        </a>
         <input type="button" value="SIGN IN" class="signin_form_btn w3-btn w3-border" onclick="handleSignin();"/>
         <p class="signin_form_msg"></p>
         <p class="signin_form_switch" onclick="document.getElementById('contact').style.display='block';document.getElementById('signin').style.display='none';">Haven't have account?click here and sign up</p>
@@ -166,6 +171,15 @@ body, html {
       <i class="fa fa-linkedin w3-hover-opacity"></i>
     </div>
   </footer>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script>
+  window.onLoadCallback = function() {
+  
+  gapi.auth2.init({
+    client_id: '99538840639-ljcarola6cro2oen0v6nc4d031mt9dj2.apps.googleusercontent.com',
+  });
+}
+</script>
 
   </body>
 <script src="/js/login.js"></script>
