@@ -29,8 +29,13 @@ const server = http.createServer(app);
 
 
 const aws = require('aws-sdk');
+const UserModel = require('./src/models/userModel');
+const { generateToken } = require('./src/controllers/userController');
 
+const _ = require("lodash");
 
+const jwt = require('jsonwebtoken');
+const secretKey = 'key';
 require('dotenv').config();
 const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
@@ -113,6 +118,9 @@ app.get('/profile', (req, res) => {
   });
 app.get('/api/getApiKey', (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
+});
+app.get('/trial', (req, res) => {
+  res.render(path.join(__dirname, 'views', 'gouath.ejs'));
 });
 
 app.get('/api/getUnsplashApiKey', (req, res) => {
@@ -252,6 +260,120 @@ async function repair(){
     return results
   }
   
+});
+
+const session = require('express-session');
+
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+app.use(session({ secret: 'key', resave: true, saveUninitialized: true }));
+
+// 使用 passport 初始化和會話
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new GoogleStrategy({
+    clientID: '99538840639-ljcarola6cro2oen0v6nc4d031mt9dj2.apps.googleusercontent.com',
+    clientSecret: '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',
+    callbackURL: "/auth/google/callback"
+  },
+  async function(accessToken, refreshToken, profile, done) {
+    // Store user information in your database
+    console.log("access token: ",accessToken)
+    console.log("refresh token: ", refreshToken)
+    console.log(profile._json.email,"itsssefeff")
+    const googleUserMail = profile._json.email
+    try {
+
+      const existingUser = await new Promise((resolve, reject) => {
+          UserModel.ifUserExist(googleUserMail, (err, results) => {
+              if (err) {
+                  reject(err);
+              } else {
+                  resolve(results);
+              }
+          });
+      });
+
+      if (!_.isEmpty(existingUser)) {
+          const results = await new Promise((resolve, reject) => {
+            UserModel.findByEmailAndPassword(googleUserMail, "google", (err, results) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+
+        if (results.length === 0) {
+          return done(null, false, { message: 'Invalid credentials' });
+        }
+
+        const token = generateToken(results[0].id, null, googleUserMail, null);
+        console.log('Generated Token:', token);
+          const user = {
+            email: googleUserMail,
+            token: token
+        };
+          return done(null, user);
+              } else {
+            const newUserResults = await new Promise((resolve, reject) => {
+              UserModel.newUser(googleUserMail, 'google', (err, results) => {
+                  if (err) {
+                      reject(err);
+                  } else {
+                      resolve(results);
+                  }
+              });
+          });
+          const token = generateToken(newUserResults.insertId, null, googleUserMail, 'google');
+          console.log('Generated Token:', token);
+          const user = {
+            email: googleUserMail,
+            token: token
+        };
+          return done(null, user);
+        }
+  } catch (error) {
+      console.error('Error creating user:', error);
+      return done(error, false, { message: 'Internal Server Error' });
+    }
+    return done(null, profile);
+  }
+));
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: [ 'email',"profile"] })
+);
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', {failureRedirect: '/' }),
+  function(req, res) {
+    console.log(req,'queryyyyyy')
+    res.cookie('authToken', req.user.token,{ httpOnly: false, secure: true, sameSite: 'None' });
+
+    // Successful authentication, redirect home.
+    res.redirect(`/profile`);
+    
+  }
+);
+
+// Example route to display user information after authentication
+app.get('/handle-token', (req, res) => {
+  const token = req.query.token;
+  res.status(200).json({ ok: true, token: token });
+});
+
+passport.serializeUser(function(user, done) {
+  // Store only the user ID in the session
+  console.log(user)
+  // user.session.token = user.token;
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 
 server.listen(port, () => {
