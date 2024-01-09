@@ -1,13 +1,12 @@
 const UserModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
-const secretKey = 'your-secret-key';
+const secretKey = 'key';
 const _ = require("lodash");
 
 
 const UserController = {
   createUser: async (req, res) => {
     try {
-        // Extract data from the request body
         const { email, password } = req.body;
 
         const existingUser = await new Promise((resolve, reject) => {
@@ -110,5 +109,5 @@ function decodeFromToken(request){
 
 }
 
-module.exports = {UserController,decodeFromToken};
+module.exports = {UserController,decodeFromToken,generateToken};
 
