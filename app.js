@@ -43,8 +43,9 @@ const dbPassword = process.env.DB_PASSWORD;
 const awsID = process.env.AWS_KEY_ID;
 const awsKEY = process.env.AWS_SECRET_KEY;
 const awsRegion = process.env.AWS_REGION;
-
 const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+const googleClientId = process.env.GOOGLE_Client_ID;
+const googleClientSecret = process.env.GOOGLE_Client_Secret;
 
 const connection = mysql.createConnection({
   host: dbHost,
@@ -268,20 +269,15 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 app.use(session({ secret: 'key', resave: true, saveUninitialized: true }));
 
-// 使用 passport 初始化和會話
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new GoogleStrategy({
-    clientID: '99538840639-ljcarola6cro2oen0v6nc4d031mt9dj2.apps.googleusercontent.com',
-    clientSecret: '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',
+    clientID:  googleClientId,
+    clientSecret:  googleClientSecret,
     callbackURL: "/auth/google/callback"
   },
   async function(accessToken, refreshToken, profile, done) {
-    // Store user information in your database
-    console.log("access token: ",accessToken)
-    console.log("refresh token: ", refreshToken)
-    console.log(profile._json.email,"itsssefeff")
     const googleUserMail = profile._json.email
     try {
 
@@ -311,7 +307,6 @@ passport.use(new GoogleStrategy({
         }
 
         const token = generateToken(results[0].id, null, googleUserMail, null);
-        console.log('Generated Token:', token);
           const user = {
             email: googleUserMail,
             token: token
@@ -350,25 +345,14 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google', {failureRedirect: '/' }),
   function(req, res) {
-    console.log(req,'queryyyyyy')
     res.cookie('authToken', req.user.token,{ httpOnly: false, secure: true, sameSite: 'None' });
 
-    // Successful authentication, redirect home.
     res.redirect(`/profile`);
     
   }
 );
 
-// Example route to display user information after authentication
-app.get('/handle-token', (req, res) => {
-  const token = req.query.token;
-  res.status(200).json({ ok: true, token: token });
-});
-
 passport.serializeUser(function(user, done) {
-  // Store only the user ID in the session
-  console.log(user)
-  // user.session.token = user.token;
   done(null, user);
 });
 
