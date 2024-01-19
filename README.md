@@ -46,6 +46,7 @@ https://foodiefriends.online/
   - Implement **Jest** for unit testing the user authentication route to ensure the reliability of the authentication process.
 
 - **User Authentication**:
+  - Integrated Google OAuth 2.0 for user authentication using Passport.js.
   - Utilized user authentication and validation through **JSON Web Tokens (JWT)**, maintaining secure and reliable access control for web applications.
 
 - **Containerization with Docker**:
