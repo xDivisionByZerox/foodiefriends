@@ -83,7 +83,7 @@ https://foodiefriends.online/
 
 - **Server Architecture**: 
 <p align="center">
-  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/da8eba48-d297-4164-bb08-92776add9d82" alt="system_design">
+  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/230bb4ef-167d-4301-9f15-4b2913af2532" alt="system_design">
 </p>
 
 ## Contact
