@@ -17,15 +17,25 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Checkout Source
+      uses: actions/checkout@v3
+    - name: Login Docker
+      run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+    - name: Build docker IMAGE
+      run: docker build -t cching616/nodejs-fd .
+    - name: Push docker IMAGE to docker hub
+      run: docker push cching616/nodejs-fd:latest     
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Delete unused container
+        run: docker rm -f cching616/nodejs-fd-container   
+      - name: Pull image from docker hub 
+        run: docker pull cching616/nodejs-fd:latest   
+
+      - name: Run docker container 
+        run: docker run -d -p 8080:80 --name nodejs-fd-container cching616/nodejs-fd 
+
+    
