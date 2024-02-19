@@ -37,6 +37,6 @@ jobs:
       - name: Delete unused container
         run: docker rm -f cching616/nodejs-fd-container   
       - name: Run docker container 
-        run: docker run -d -p 80:80 -name nodejs-fd-container cching616/nodejs-fd 
+        run: docker run -d -p 80:80 --name nodejs-fd-container cching616/nodejs-fd 
 
     
