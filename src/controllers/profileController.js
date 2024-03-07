@@ -105,26 +105,15 @@ const ProfileController = {
               MatchBefore.forEach((e) => {
                 if (e.USERA == userID) {
                   hasMatched.push(e.USERB);
-                  console.log(e.USERB);
                 } else {
                   hasMatched.push(e.USERA);
                 }
               });
             }
           } catch (error) {
-            console.error("Error:", error);
             // Handle the error
           }
 
-        // ifMatchBefore
-        //   PairModel.ifMatched(true,userID,(err,results)=>{
-        
-        //     if (err) throw err
-        //     console.log(results,"WHO MATCHED B4")
-
-        //     console.log(hasMatched)
-        
-        //   })
           //current user's profile and filter
           let { minage, maxage, gender, diet, relationship } = results[0];
           console.log(minage, maxage, gender, diet, relationship);
@@ -135,7 +124,6 @@ const ProfileController = {
                   else resolve(results);
               });
           });
-          console.log(hasMatched,"?iouhpoih")
 
           if (_.isEmpty(matchResults)) {
               return res.status(200).json({ "message": "cannot find any" });
@@ -151,27 +139,18 @@ const ProfileController = {
               else resolve(results);
           });
       });
-      console.log(dateResults[0].date,"dadada")
       const dateObject = new Date(dateResults[0].date);
-const dayOfWeek = dateObject.toLocaleDateString('en-US', { weekday: 'long' });
+      const dayOfWeek = dateObject.toLocaleDateString('en-US', { weekday: 'long' });
 
-console.log(`The day of the week for ${dateResults[0].date} is ${dayOfWeek}.`);
-//find day matched others
-let dateMatchedResults = await new Promise((resolve, reject) => {
-  RestaurantModel.ifDayMatch(dayOfWeek,(err,results)=>{
-    if (err) reject(err);
-      else resolve(results);
-  });
-});
-      //   let dateMatchedResults = await new Promise((resolve, reject) => {
-      //     RestaurantModel.ifDateMatch(dateResults[0].date,(err,results)=>{
-      //       if (err) reject(err);
-      //         else resolve(results);
-      //     });
-      // });
-      const memberIdsArray = dateMatchedResults.map(row => row.member_id);
-      console.log(memberIdsArray)
-      console.log(`Member ${userID}'s date is found: `, dateMatchedResults);
+      //find day matched others
+      let dateMatchedResults = await new Promise((resolve, reject) => {
+        RestaurantModel.ifDayMatch(dayOfWeek,(err,results)=>{
+          if (err) reject(err);
+            else resolve(results);
+        });
+      });
+        const memberIdsArray = dateMatchedResults.map(row => row.member_id);
+
         let currentUserPriceLevel=[];
           let response = { "data": [] };
           let currentUserResponse = { "data": [] };
@@ -182,6 +161,7 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
             });
         });
           response.data.push({ "member": userID, "name": [] });
+          console.log(currentUserlikedResults,"current")
 
           let likedResults = await new Promise((resolve, reject) => {
               RestaurantModel.LikedRestaurant(userID, (err, results) => {
@@ -203,6 +183,11 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
                   }
               });
           }
+          let currentUserRestaurant;
+          currentUserRestaurant = response.data[0].name
+          console.log(currentUserRestaurant)
+
+
           //filter matched others
           for (const e of filteredMatchResults) {
 
@@ -235,10 +220,8 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
           //get others whose day is matched
           response.data = response.data.filter(entry => memberIdsArray.includes(entry.member));
 
-        // Integrate all current restaurants
-          console.log("I am response.data",response.data)
+          // Integrate all current restaurants
           const restaurants = Array.from(new Set(response.data.flatMap(user => user.name)));
-          console.log(restaurants, ":::::::::");
 
           let userItemMatrix = response.data.map(user => {
             const userRow = restaurants.map(restaurant =>
@@ -248,8 +231,7 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
             return userRow;
           });
 
-
-          console.log(userItemMatrix.length);
+          console.log(userItemMatrix);
           let similarityArr=[]
           let mostSimilarUsers=[];
           userItemMatrix.forEach((e,index)=>{
@@ -259,15 +241,15 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
           })
           const sortedMatrix = similarityArr.sort((a, b) => b[1] - a[1]);
           console.log(sortedMatrix);
-          sortedMatrix.slice(0,10).forEach((e,index)=>{
-            // console.log(index)
+          sortedMatrix.slice(0,100).forEach((e,index)=>{
             let ord = e[0]
             mostSimilarUsers.push(response.data[ord])
           }
           )
           console.log(mostSimilarUsers,"iuhihuigo8tg8");
           //remove user self 
-          let currentuser =  mostSimilarUsers.splice(0,1)
+          // let currentuser =  mostSimilarUsers.splice(0,1)
+          // console.log(currentuser,"hu")
 
           const recommendedRestaurants = [];
           let response2 = { "data": [] };
@@ -283,7 +265,7 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
         
           // filter out others' restaurant if the current user has them
           for (const restaurant of perUser.name) {
-            if (!currentuser[0].name.includes(restaurant)) {
+            if (!currentUserRestaurant.includes(restaurant)) {
               try {
                 const restaurantInfo = await new Promise((resolve, reject) => {
                   RestaurantModel.getRestaurantFromId(restaurant, (err, results) => {
@@ -291,9 +273,7 @@ let dateMatchedResults = await new Promise((resolve, reject) => {
                     else resolve(results);
                   });
                 });
-        
-                console.log(restaurantInfo, "heheee");
-        
+                
                 response2.data[memberIndex].name.push(restaurantInfo[0]);
               } catch (error) {
                 console.error('Error fetching restaurant info:', error);

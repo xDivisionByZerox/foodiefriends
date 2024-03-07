@@ -169,6 +169,10 @@
     padding: 20px;
   }
 
+.w3-bar .w3-button {
+  padding: 16px;
+  height: 65px;
+}
 
 #reselect_btn{
   margin:20px

@@ -13,15 +13,7 @@ const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
 
 // Create a connection pool
-const pool = mysql.createPool({
-  host: dbHost,
-  user: dbUser,
-  password: dbPassword,
-  database: 'foodiefriend',
-  port: 3306,
-  insecureAuth: true,
-  connectionLimit: 10, 
-});
+const pool = require('./connectDb');
 
 const UserModel = {
 

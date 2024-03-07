@@ -25,18 +25,18 @@ const PairController = {
                             res.status(500).json({ error: 'Internal Server Error' });
                         } else {
                             console.log('Pair created successfully:', results);
-                            res.status(200).json({ ok: true });
+                            res.status(200).json({ ok: true, status: 0 });
                         }
                     });
                 } else {
-                    // Change to false
-                    PairModel.updatePair(USERB, USERA, false, (err, results) => {
+                    // Change to false(corect in real scenario)
+                    PairModel.updatePair(USERB, USERA, true, (err, results) => {
                         if (err) {
                             console.error('Error updating Pair:', err);
                             res.status(500).json({ error: 'Internal Server Error' });
                         } else {
                             console.log('Match updated successfully:', results);
-                            res.status(200).json({ ok: true });
+                            res.status(200).json({ ok: true, status: 1 });
                         }
                     });
                 }
@@ -116,7 +116,7 @@ const PairController = {
         let userID = decodeFromToken(req)
         let response={"data":[]}
         try{
-        PairModel.ifMatched(false,userID,(err,results)=>{
+        PairModel.ifMatched(true,userID,(err,results)=>{
 
             if (err) throw err
             if(_.isEmpty(results)){
