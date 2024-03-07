@@ -85,7 +85,6 @@ restaurantList = []
 restaurantList.forEach(async(e, index) => {
 const hasFoodOrRestaurant = e.types.includes("food") || e.types.includes("restaurant");
 if(hasFoodOrRestaurant){
-  // console.log()
   if(currentRestaurant.some(item => item.name === e.name)){
     cacheResataurant.splice(index, 1)
   
@@ -233,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
                 // Create an image element
                 const imageElement = document.createElement("img");
-                imageElement.src = "https://placekitten.com/300/200"; // Replace with your actual image source
+                imageElement.src = "../img/restaurant_image.jpg"; // Replace with your actual image source
                 imageElement.alt = "Restaurant Image";
                 imageElement.style.width = "100%";
             

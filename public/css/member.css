@@ -6,7 +6,6 @@ body, html {
   
 }
 
-/* Full height image header */
 .bgimg-1 {
   background-position: center;
   background-size: cover;
@@ -16,15 +15,8 @@ body, html {
 
 .w3-bar .w3-button {
   padding: 16px;
+  height: 65px;
 }
-/* 
-
-        #form-container {
-            margin: 10px auto;
-            padding: 15px;
-            background-color: #f4f4f4;
-            border-radius: 8px;
-        } */
 
         .form-step {
             display: none;
@@ -341,12 +333,15 @@ body, html {
 } */
 
 .update_profile_btn::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
+  height: 20px;
+  left: 30px;
 }
 
 .update_profile_btn::-webkit-scrollbar-thumb {
   background-color: #888;
-  border-radius: 6px;
+  border-radius: 3px;
+
 }
 
 .update_profile_btn::-webkit-scrollbar-track {
@@ -552,7 +547,7 @@ img {
   background-color: transparent;
   
   }
-  .iziToast>.iziToast-body .iziToast-message, .iziToast>.iziToast-body .iziToast-title {
+.iziToast>.iziToast-body .iziToast-message, .iziToast>.iziToast-body .iziToast-title {
     padding: 0;
     font-size: 14px;
     line-height: 50px;
@@ -565,4 +560,29 @@ img {
   top: 55px;
   position: relative;
   margin: auto;
+}
+
+#swipeCard{
+  height: 70vh;
+}
+
+#sent-to-card-body{
+  overflow: scroll;
+}
+
+#sent-to-card-img{
+  height: 200px;
+}
+
+#new_match_modal{
+  height: 100px;
+}
+
+
+#logout_modal{
+  height: 230px;
+  width:70%;
+  left: 50%;
+  transform: translateX(-50%);
+
 }

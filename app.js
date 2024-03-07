@@ -1,33 +1,15 @@
-// const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const port = 80;
 const mysql = require('mysql');
-const util = require('util');
-
-// const http = require('http');
 var socketio = require('socket.io')
-const cors = require('cors'); // Import the cors middleware
-
-// const app = express();
+const cors = require('cors'); 
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-// const io = new Server(server,{
-//   cors: {
-//       origin: "http://13.55.201.157:4040",
-//       methods: ["GET", "POST"],
-//       transports: ['websocket', 'polling'],
-//       credentials: true
-//   },
-//   allowEIO3: true
-// });
-
-
-
 const aws = require('aws-sdk');
 const UserModel = require('./src/models/userModel');
 const { generateToken } = require('./src/controllers/userController');
@@ -47,17 +29,17 @@ const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 const googleClientId = process.env.GOOGLE_Client_ID;
 const googleClientSecret = process.env.GOOGLE_Client_Secret;
 
-const connection = mysql.createConnection({
+// Create a connection pool
+const pool = mysql.createPool({
   host: dbHost,
   user: dbUser,
   password: dbPassword,
   database: 'foodiefriend',
-  port: 3306, // MySQL default port
+  port: 3306,
+  insecureAuth: true,
+  connectionLimit: 10,
 });
 
-const query = util.promisify(connection.query).bind(connection);
-
-// // var server = http.createServer();
 const io = require('socket.io')(server, {
   cors: {
       origin: "https://foodiefriends.online",
@@ -67,26 +49,6 @@ const io = require('socket.io')(server, {
   },
   allowEIO3: true
 });
-// const io = require('socket.io')(server, {
-//   cors: {
-//       origin: "http://localhost",
-//       methods: ["GET", "POST"],
-//       transports: ['websocket', 'polling'],
-//       credentials: true
-//   },
-//   allowEIO3: true
-// });
-
-
-
-
-
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:80'); // Change to your frontend origin
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-//   next();
-// });
-
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -99,10 +61,6 @@ app.get('/', (req, res) => {
   res.render(path.join(__dirname, 'views', 'index.ejs'));
 });
 
-
-  // app.get('/', (req, res) => {
-  //   res.render(path.join(__dirname, 'views', 'index.ejs'));
-  // });
 app.get('/profile', (req, res) => {
     res.render(path.join(__dirname, 'views', 'profile.ejs'));
   });
@@ -120,9 +78,6 @@ app.get('/profile', (req, res) => {
 app.get('/api/getApiKey', (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
 });
-app.get('/trial', (req, res) => {
-  res.render(path.join(__dirname, 'views', 'gouath.ejs'));
-});
 
 app.get('/api/getUnsplashApiKey', (req, res) => {
   res.json({ apiKey: process.env.UNSPLASH_API_KEY });
@@ -131,7 +86,7 @@ app.get('/api/getUnsplashApiKey', (req, res) => {
 app.get('/getPlaceDetails/:placeId', async (req, res) => {
   const placeId = req.params.placeId;
   const gMapKey = process.env.GOOGLE_MAPS_API_KEY;
-  const detailsUrl = `https://mas.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${gMapKey}`;
+  const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${gMapKey}`;
   console.log(detailsUrl)
   try {
     const response = await fetch(detailsUrl);
@@ -143,20 +98,24 @@ app.get('/getPlaceDetails/:placeId', async (req, res) => {
   }
 });
 
-
 // Routes
-const userRoute = require('./src/routes/user');
-const { Console } = require('console');
+const userRoute = require('./src/routes/userRoutes');
+const restaurantRoute = require('./src/routes/restaurantRoutes');
+const matchRoute = require('./src/routes/matchRoutes');
+const profileRoute = require('./src/routes/profileRoutes');
+
 app.use(userRoute);
+app.use(restaurantRoute);
+app.use(matchRoute);
+app.use(profileRoute);
 
 const connectedUsers = {};
-let relationships = []
-let UserA
-let UserB
+let relationships = [];
+let UserA;
+let UserB;
 // Socket.io connection event
 io.on('connection', (socket) => {
   console.log('A user connected with default socket ID:', socket.id);
-
   // Listen for the 'setUserId' event
   socket.on('setUserId', (userId) => {
     // Set a custom user ID and associate it with the socket ID
@@ -171,15 +130,6 @@ io.on('connection', (socket) => {
 socket.on('like', async(likedUserId) => {
   UserB = likedUserId
   console.log(UserA," like ",UserB)
-  let pairArr=await getPair()
-  console.log("Pairs in DB: ",pairArr)
-  let relationships =await repair()
-
- let mutualLike =await check(pairArr,relationships)
- relationships = []
- console.log("Pair results: ",mutualLike)
-  if (mutualLike) {
-    
     // Notify both users
     socket.emit('notification', `You have a new match with ${likedUserId}!`);
     console.log("被liked的: ",likedUserId)
@@ -189,22 +139,29 @@ socket.on('like', async(likedUserId) => {
       io.to(connectedUsers[likedUserId]).emit('notification',  `You have a new match with ${UserA}!`);
     }
 
-    
-  }
-
 });
 
-//從db撈出配對
 async function getPair() {
   try {
     const pairArr = [];
-    const selectQuery = `SELECT * FROM pairs;`;
-
-    // Wrap the connection.query in a Promise
-    const results = await new Promise((resolve, reject) => {
-      connection.query(selectQuery, (err, res) => {
-        if (err) reject(err);
-        else resolve(res);
+    return new Promise((resolve, reject) => {
+      pool.getConnection((error, connection) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+  
+        const selectQuery = `SELECT * FROM pairs;`;
+  
+        connection.query(selectQuery, (queryError, results) => {
+          connection.release();
+  
+          if (queryError) {
+            reject(queryError);
+          } else {
+            resolve(results);
+          }
+        });
       });
     });
 
@@ -219,20 +176,29 @@ async function getPair() {
   }
 }
 
-//生成要比對的pair和將pari放入db
-async function repair(){
+//生成要比對的pair和將pair放入db
+async function repair(callback){
   if(UserA!=null&&UserB!=null){
     relationships.push([UserA,UserB])
     console.log("The relationship pair is: ",relationships[relationships.length-1])
     console.log("The relationship pair is: ",relationships)
+    
+    pool.getConnection((error, connection) => {
+      if (error) {
+        return callback(error, null);
+      }
+      const insertQuery = `INSERT INTO pairs(UserA,UserB)values(?,?);`
+      const values = [UserA, UserB];
 
-    const insertQuery = `INSERT INTO pairs(UserA,UserB)values(?,?);`
-    const values = [UserA, UserB];
-    connection.query(insertQuery, values);   
-    return  relationships
+      connection.query(insertQuery, values, (queryError, results) => {
+        connection.release();
+
+        callback(queryError, results);
+      });
+  });  
+    return relationships
   }
 }
-
 
   async function check(pairArr,relationships){
     if(relationships!=null&&pairArr!=null){
@@ -252,12 +218,19 @@ async function repair(){
 
   function checkMutualLike() {
 
-    let results
-    const selectQuery = `SELECT * FROM pairs;`
-    connection.query(selectQuery,(err,res)=>{
-      results = res
+    let results;
+    pool.getConnection((error, connection) => {
+      if (error) {
+        return callback(error, null);
+      }
+      const selectQuery = `SELECT * FROM pairs;`
+      connection.query(selectQuery,(queryError, results) => {
+      connection.release();
+      results = results
 
+      callback(queryError, results);
     });
+  });
     return results
   }
   

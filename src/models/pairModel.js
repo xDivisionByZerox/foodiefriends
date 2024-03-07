@@ -17,18 +17,8 @@ const awsID = process.env.AWS_KEY_ID;
 const awsKEY = process.env.AWS_SECRET_KEY;
 const awsRegion = process.env.AWS_REGION;
 
-
-
 // Create a connection pool
-const pool = mysql.createPool({
-  host: dbHost,
-  user: dbUser,
-  password: dbPassword,
-  database: 'foodiefriend',
-  port: 3306,
-  insecureAuth: true,
-  connectionLimit: 10,
-});
+const pool = require('./connectDb');
 
 const PairModel={
     createPair: (USERA, USERB, restaurant, date, time, timestamp,status,callback)=>{

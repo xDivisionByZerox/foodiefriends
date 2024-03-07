@@ -25,42 +25,38 @@ document.getElementById('its_a_match_btn').addEventListener('click', function() 
 });
 
     // JavaScript to close the modal when "Save changes" button is clicked
-  document.getElementById('keepmatchButton').addEventListener('click', function() {
-    window.location.href = "/my-matches"
-    var myModal = new bootstrap.Modal(document.getElementById('matchModal'));
-    myModal.hide();
-  });
+document.getElementById('keepmatchButton').addEventListener('click', function() {
+  window.location.href = "/my-matches"
+  var myModal = new bootstrap.Modal(document.getElementById('matchModal'));
+  myModal.hide();
+});
 
-  document.addEventListener("DOMContentLoaded",async()=>{
+document.addEventListener("DOMContentLoaded",async()=>{
 
-    let whoUserLikes = await likeOthers()
-    document.querySelector('#i-sent_result').innerHTML =whoUserLikes.data[0].id
+  let whoUserLikes = await likeOthers()
+  document.querySelector('#i-sent_result').innerHTML =whoUserLikes.data[0].id
+})
     
-    })
+document.addEventListener("DOMContentLoaded",async()=>{
+  await displayData();
+
+  cardIndex = 0;
+  renderCard(0);
     
-    document.addEventListener("DOMContentLoaded",async()=>{
-      await displayData();
-    // let whoLikesUser = await getLiked()
-    // document.querySelector('#sent-to-me_result').innerHTML = "";
-     
-    cardIndex = 0;
-    renderCard(0);
-    // document.querySelector('#sent-to-me_result').innerHTML =whoLikesUser.data[0].id
-    
-    })
+})
   
 // defaultClicked.click()
 buttons.forEach(button => {
   button.addEventListener('click', (event) => {
     const clickedButton = event.currentTarget.id;
     if(clickedButton == "v-pills-sent-to-me-tab"){
-
+      //
 
     }else if(clickedButton == "v-pills-i-sent-tab"){
+      //
 
     }else{
       window.location.href = window.location.href
-
     }
 
   });
@@ -93,11 +89,9 @@ async function login_check() {
   }
 }
 
-  
-
 async function getMatches(){
     let match_containter = document.querySelector(".match_results")
-    let response =await fetch("/api/matches",{
+    let response = await fetch("/api/matches",{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -105,11 +99,11 @@ async function getMatches(){
       },      
   
     })
-    let result  =await  response.json();
+    let result = await response.json();
     let data = result.data
     console.log(data)
     if(data ==null){
-      //
+      document.querySelector(".match_results").innerHTML = `<h5>No matches so far.</h5>`
     }else{
   
     //render restaurant info into page
@@ -149,7 +143,7 @@ async function getMatches(){
   }
   }  
   
-  getMatches()
+getMatches()
 async function renderMatchInfo(date){
 
   const matchInfoRegex = /You have a date (\d+) on (\d{4}-\d{2}-\d{2} (.+):(.+)(.+)),(.+),(.+)/;
@@ -353,17 +347,25 @@ async function renderCard(cardIndex) {
         }
       });
 
+      let dateRestaurantResponse= await fetch(`/api/restaurants/${cardData[cardIndex].restaurant}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
 
       let result  = await profileResponse.json();
       let useraProfileData = result.data[0]
 
       let restaurantResult  = await restaurantResponse.json();
+      console.log(restaurantResult)
       let useraRestaurantData = restaurantResult.data
  
-      cardContainer.innerHTML = getCard(currentCard,useraProfileData,useraRestaurantData);
-      // console.log(currentCard)
+      let dateRestaurantResult  = await dateRestaurantResponse.json();
+      let dateRestaurantData = dateRestaurantResult.data[0]
+      console.log(dateRestaurantData)
+      cardContainer.innerHTML = getCard(currentCard,useraProfileData,useraRestaurantData,dateRestaurantData);
     } else {
-      // No more cards, you can handle this case (e.g., show a message)
       cardContainer.innerHTML = NoCardHTML();
     }
   }
@@ -386,7 +388,7 @@ function NoCardHTML() {
             </button>`;
   }
 
-  function getCard(card,useraProfileData,useraRestaurantData) {
+  function getCard(card,useraProfileData,useraRestaurantData,dateRestaurantData) {
     const birthdateString = useraProfileData.birthday;
     const birthdate = new Date(birthdateString);
     const currentDate = new Date();
@@ -406,10 +408,11 @@ function NoCardHTML() {
 
     </div>
     <div class="card tinder-card" id="swipeCard">
-      <img src="https://placekitten.com/300/200" class="card-img-top" alt="${card.restaurant}">
-      <div class="card-body">
+      <img src="https://placekitten.com/300/200" class="card-img-top" id="sent-to-card-img" alt="${card.restaurant}">
+      <div class="card-body" id="sent-to-card-body">
         <div id="scrollContainer" data-spy="scroll" data-target="#swipeCard">
-          <h4 class="card-title">${card.restaurant}</h4>
+          <h4 class="card-title">${dateRestaurantData[0].name}</h4>
+          <a href="https://www.google.com/maps/place/?q=place_id:${dateRestaurantData[0].placeid}"><p>${dateRestaurantData[0].address}</p></a>
           <h4> ${useraProfileData.nickname}, ${ageInYears} </h4>
           <hr>
           <h4 id="scrollspyHeading2">About me</h4>
@@ -512,6 +515,10 @@ async function like(id) {
     })
     let match_result = await match_response.json()
     console.log(match_result)
+    if(match_result.ok){
+      console.log(cardData[this.id].USERA)
+      sendLike(cardData[this.id].USERA)
+    }
 
     this.id++
     setTimeout(function () {

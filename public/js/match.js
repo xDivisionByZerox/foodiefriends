@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded",async()=>{
-  let date_notification_text = await checkFilter()
-  
+  let currentUserFilter = await checkFilter()
+  console.log(date_notification_text)
   checkDate().then(result => {
     currentUserDate = result[0]
     document.getElementById('datePicker').value = currentUserDate.date
@@ -124,7 +124,9 @@ document.getElementById('its_a_match_btn').addEventListener('click', function() 
 
 document.getElementById('keepmatchButton').addEventListener('click', function() {
   var myModal = new bootstrap.Modal(document.getElementById('matchModal'));
+  window.location.href = "/my-matches"
   myModal.hide();
+  
 });
 
 
@@ -148,6 +150,7 @@ document.getElementById('datePicker').addEventListener('input', updateSelectedDa
 document.getElementById('openModalButton').addEventListener('click',async function() {
   filterModal.show();
   const filterGender = currentUserFilter.gender;
+  console.log(currentUserFilter.minage, currentUserFilter.maxage,currentUserFilter.gender)
   customRangeSlider.setValue([currentUserFilter.minage, currentUserFilter.maxage]);
   customRangeSlider.on('slide', function(sliderValue) {
     document.getElementById('selectedRange').innerText = sliderValue[0] + ' - ' + sliderValue[1];
@@ -203,6 +206,7 @@ saveChangesButton.addEventListener("click", async (e) => {
 async function displayData() {
   try {
     cardData = await getCurrentUser();
+    console.log(cardData)
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -299,6 +303,7 @@ function ren(card,photoUrl) {
         userRestaurant.push(e.name)
       }
     )
+    console.log(card.name[0])
     return `
     <div class="card tinder-card" id="swipeCard">
       <img src="${photoUrl}" class="card-img-top" alt="${card.name}">
@@ -352,7 +357,7 @@ async function like(id) {
       body: JSON.stringify({ "id": cardData[this.id].name[0].id})
     })
     let result = await response.json()
-    sendLike(id)
+    // sendLike(id)
     var card = document.getElementById('swipeCard');
     card.classList.add('swipe-right');
     setTimeout(function () {
@@ -377,6 +382,10 @@ async function like(id) {
                           })
     })
     let match_result = await match_response.json()
+    console.log(match_result.status)
+    if(match_result.status == true){
+      sendLike(id)
+    }
     this.id++
     setTimeout(function () {
       renderCard(this.id)
@@ -480,11 +489,13 @@ async function checkFilter(){
     }
   })
   let result  = await response.json();
-  currentUserFilter = result.data
+  console.log(result)
+  currentUserFilter = result.data[0]
   if(currentUserFilter == null){
     filterModal.show()
     }else{
-    return result.data
+      console.log(currentUserFilter)
+    return result.data[0]
 
   }
 
