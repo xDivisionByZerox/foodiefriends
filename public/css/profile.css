@@ -1,0 +1,170 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway", sans-serif
+}
+
+body,
+html {
+    height: 100%;
+    line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+    background-position: center;
+    background-size: cover;
+    background-image: url("/w3images/mac.jpg");
+    min-height: 100%;
+}
+
+.w3-bar .w3-button {
+    padding: 16px;
+}
+
+
+#form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+#progress-bar {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#progress-bar div {
+    float: left;
+    width: 33.33%;
+    height: 10px;
+    border-radius: 20px;
+    background-color: grey;
+}
+
+
+.modal-header {
+    padding: 0;
+}
+
+.modal-content {
+    width: 400px;
+    top: 85px
+}
+
+#restaurant_box {
+    display: none;
+    background-color: #f9f9f9;
+    margin: auto;
+    position: relative;
+    border-radius: 5px;
+    padding: 10px 20px;
+    height: 60vh;
+    justify-content: space-evenly;
+}
+
+
+@media (min-width: 768px) {
+    .button-46 {
+        font-size: 20px;
+        min-width: 200px;
+        padding: 14px 16px;
+    }
+}
+
+.pac-container {
+    z-index: 9999;
+    /* Set a higher z-index */
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: var(--bs-modal-title-line-height);
+    padding: 20px;
+    box-sizing: border-box;
+    left: 20px;
+    /* position: absolute; */
+    top: -5px;
+}
+
+.modal-header .btn-close {
+    padding: calc(var(--bs-modal-header-padding-y) * .5) calc(var(--bs-modal-header-padding-x) * .5);
+    margin: calc(-.5 * var(--bs-modal-header-padding-y)) calc(-.5 * var(--bs-modal-header-padding-x)) calc(-.5 * var(--bs-modal-header-padding-y)) auto;
+    right: 20px;
+    position: relative;
+}
+
+#offcanvasBottom {
+    height: 409px;
+    /* top: -100px; */
+    height: 350px;
+    margin-left: calc(100% - 300px);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    width: 300px;
+    visibility: hidden;
+    /* float: initial; */
+    position: relative;
+}
+
+.w3-card {
+    height: 100%;
+    /* Set a fixed height for all cards */
+}
+
+#restaurant_info_text {
+    height: 200px;
+    overflow: scroll
+}
+
+#restaurant_info_text::-webkit-scrollbar {
+    display: none;
+}
+
+.w3-card img {
+    height: 150px;
+    /* Ensure the image takes full height */
+    object-fit: cover;
+    /* Maintain aspect ratio and cover the container */
+}
+
+.iziToast>.iziToast-body .iziToast-message,
+.iziToast>.iziToast-body .iziToast-title {
+    padding: 0;
+    font-size: 14px;
+    line-height: 50px;
+    text-align: left;
+    float: left;
+    white-space: normal;
+}
+
+.btn.active {
+    background-color: #a6a6a6;
+    /* Change this to the desired active color */
+    color: #fff;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    position: relative;
+    top: 22px;
+}

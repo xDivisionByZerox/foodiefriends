@@ -1,184 +1,198 @@
 .tinder-card {
-    /* position: absolute;
+  /* position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); */
-    width: 400px;
-    max-width: 100%;
-    cursor: pointer;
-    transition: transform 0.3s ease-out;
-  }
-  
-  .tinder-card.swipe-left {
-    transform: translate(-80%, -50%) rotate(-45deg);
-    opacity: 0.5;
-  }
-  
-  .tinder-card.swipe-right {
-      transform: translate(80%, -50%) rotate(45deg);
-      opacity: 0.5;
-  }
-  
-  
-  .card{
-    position: relative;
-  } 
-  /* Additional styles to customize the appearance of the range line */
-  #customRange .slider-track-high {
-      background-color: #fb1717; /* Set your desired fill color */
-      height: 10px; /* Adjust the height of the filled part */
-      border-radius: 5px; /* Optional: Add border-radius for rounded corners */
-      display: none;
-    }
-  
-  .getLocationBtn{
-    height: 100px;
-  }
-  #openModalButton{
-    width: 55px;
-      height: 50px;
-      position: absolute;
-      top: 70px;
-      left: 30%;
-  }
-  
-  .slider-selection{
-    background-color: #fb1717;
-  }
-  .matchModal{
-    background-color: aliceblue;
-  }
-  .match_container {
-    width: 30%;
-    height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    overflow: scroll;
-    
-    /* For Webkit browsers (e.g., Chrome, Safari) */
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  
-    /* For Firefox */
-    scrollbar-width: none;
-  }
-  
-  .match_notification{
-    width: 95%;
-    height: 100px;
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    margin: 10px;
-    position: relative;
-  }
-  
-  #matches_msg{
-    margin: auto;
-    /* font-family:'Courier New', Courier, monospace; */
-    padding: 0px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease; /* Add a smooth transition effect */
-  
-  }
-  
-  #dislikeBtn,#likeBtn{
-    position: relative;
+  width: 400px;
+  max-width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+}
 
-  }
-  #scrollContainer {
-    height: 200px;
-    overflow-y: scroll; /* Enable vertical scrolling */
-    text-align: left;
-  }
-  
-  #timestamp{
-    font-size: xx-small;
-      position: absolute;
-      left: 80%;
-      bottom: -20px;
+.tinder-card.swipe-left {
+  transform: translate(-80%, -50%) rotate(-45deg);
+  opacity: 0.5;
+}
+
+.tinder-card.swipe-right {
+  transform: translate(80%, -50%) rotate(45deg);
+  opacity: 0.5;
+}
+
+
+.card {
+  position: relative;
+}
+
+/* Additional styles to customize the appearance of the range line */
+#customRange .slider-track-high {
+  background-color: #fb1717;
+  /* Set your desired fill color */
+  height: 10px;
+  /* Adjust the height of the filled part */
+  border-radius: 5px;
+  /* Optional: Add border-radius for rounded corners */
+  display: none;
+}
+
+.getLocationBtn {
+  height: 100px;
+}
+
+#openModalButton {
+  width: 55px;
+  height: 50px;
+  position: absolute;
+  top: 70px;
+  left: 30%;
+}
+
+.slider-selection {
+  background-color: #fb1717;
+}
+
+.matchModal {
+  background-color: aliceblue;
+}
+
+.match_container {
+  width: 30%;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  overflow: scroll;
+
+  /* For Webkit browsers (e.g., Chrome, Safari) */
+  ::-webkit-scrollbar {
+    display: none;
   }
 
-  .invitation-card {
-        max-width: 1000px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .button-45 {
-    align-items: center;
-    text-align: center;
-    background-color: #FFE7E7;
-    background-position: 0 0;
-    border: 1px solid #FEE0E0;
-    border-radius: 11px;
-    box-sizing: border-box;
-    color: #D33A2C;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 33.4929px;
-    list-style: outside url(https://www.smashingmagazine.com/images/bullet.svg) none;
-    padding: 2px 12px;
-    text-decoration: none;
-    text-shadow: none;
-    text-underline-offset: 1px;
-    transition: border .2s ease-in-out,box-shadow .2s ease-in-out;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    word-break: break-word;
-  }
-  
-  .button-45:active,
-  .button-45:hover,
-  .button-45:focus {
-    outline: 0;
-  }
-  
-  
-  .button-45:active {
-    background-color: #D33A2C;
-    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
-    color: #FFFFFF;
-  }
-  
-  .button-45:hover {
-    background-color: #FFE3E3;
-    border-color: #FAA4A4;
-  }
-  
-  .button-45:active:hover,
-  .button-45:focus:hover,
-  .button-45:focus {
-    background-color: #D33A2C;
-    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
-    color: #FFFFFF;
-  }
-  
+  /* For Firefox */
+  scrollbar-width: none;
+}
 
-  #date_notification_box{
-    position: fixed;
-    width: 250px;
-    height: 100px;
-    background-color: #e4e4e4;
-    border-radius: 10px;
-    top:80px;
-    right:80px;
-    padding: 20px;
-  }
+.match_notification {
+  width: 95%;
+  height: 100px;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  margin: 10px;
+  position: relative;
+}
+
+#matches_msg {
+  margin: auto;
+  /* font-family:'Courier New', Courier, monospace; */
+  padding: 0px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+  /* Add a smooth transition effect */
+
+}
+
+#dislikeBtn,
+#likeBtn {
+  position: relative;
+
+}
+
+#scrollContainer {
+  height: 200px;
+  overflow-y: scroll;
+  /* Enable vertical scrolling */
+  text-align: left;
+}
+
+#timestamp {
+  font-size: xx-small;
+  position: absolute;
+  left: 80%;
+  bottom: -20px;
+}
+
+.invitation-card {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-45 {
+  align-items: center;
+  text-align: center;
+  background-color: #FFE7E7;
+  background-position: 0 0;
+  border: 1px solid #FEE0E0;
+  border-radius: 11px;
+  box-sizing: border-box;
+  color: #D33A2C;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 33.4929px;
+  list-style: outside url(https://www.smashingmagazine.com/images/bullet.svg) none;
+  padding: 2px 12px;
+  text-decoration: none;
+  text-shadow: none;
+  text-underline-offset: 1px;
+  transition: border .2s ease-in-out, box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  word-break: break-word;
+}
+
+.button-45:active,
+.button-45:hover,
+.button-45:focus {
+  outline: 0;
+}
+
+
+.button-45:active {
+  background-color: #D33A2C;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #FFFFFF;
+}
+
+.button-45:hover {
+  background-color: #FFE3E3;
+  border-color: #FAA4A4;
+}
+
+.button-45:active:hover,
+.button-45:focus:hover,
+.button-45:focus {
+  background-color: #D33A2C;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #FFFFFF;
+}
+
+
+#date_notification_box {
+
+  height: 100px;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  top: 80px;
+  right: 80px;
+  padding: 20px;
+  margin-top: 20px;
+  opacity: 0.7;
+}
 
 .w3-bar .w3-button {
   padding: 16px;
   height: 65px;
 }
 
-#reselect_btn{
-  margin:20px
+#reselect_btn {
+  margin: 20px
 }
 
-.card-img, .card-img-top{
+.card-img,
+.card-img-top {
   height: 250px;
   object-fit: cover;
 }

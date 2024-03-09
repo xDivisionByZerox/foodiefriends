@@ -1,455 +1,324 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Foodie Friend</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Foodie Friend</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-slider@11.0.2/dist/css/bootstrap-slider.min.css">
-<!-- Add these links in the head section of your HTML document -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="icon" type="image/x-icon" href="../img/speed-dating.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-slider@11.0.2/dist/css/bootstrap-slider.min.css">
+  <!-- Add these links in the head section of your HTML document -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="icon" type="image/x-icon" href="../img/speed-dating.png">
+  <link rel="stylesheet" href="/css/profile.css">
 
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-body, html {
-  height: 100%;
-  line-height: 1.8;
-}
-
-/* Full height image header */
-.bgimg-1 {
-  background-position: center;
-  background-size: cover;
-  background-image: url("/w3images/mac.jpg");
-  min-height: 100%;
-}
-
-.w3-bar .w3-button {
-  padding: 16px;
-}
-
-
-#form-container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-}
-
-.form-step {
-  display: none;
-}
-
-.form-step.active {
-  display: block;
-}
-
-#progress-bar {
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
-#progress-bar div {
-  float: left;
-  width: 33.33%;
-  height: 10px;
-  border-radius: 20px;
-  background-color: grey;
-}
-
-
-.modal-header{
-  padding: 0;
-}
-
-.modal-content{
-  width:400px;
-  top:85px
-}
-
-#restaurant_box{
-  display: none;
-  background-color: #f9f9f9;
-  margin: auto;
-  position: relative;
-  border-radius: 5px;
-  padding: 10px 20px;
-  height: 60vh;
-  justify-content: space-evenly;
-}
-
-
-@media (min-width: 768px) {
-  .button-46 {
-    font-size: 20px;
-    min-width: 200px;
-    padding: 14px 16px;
-  }
-}
-
-.pac-container {
-  z-index: 9999; /* Set a higher z-index */
-}
-
-.modal-content {
-    width: 100%;
-}
-
-.modal-title {
-    margin-bottom: 0;
-    line-height: var(--bs-modal-title-line-height);
-    padding: 20px;
-    box-sizing: border-box;
-    left: 20px;
-    /* position: absolute; */
-    top: -5px;
-}
-
-.modal-header .btn-close {
-    padding: calc(var(--bs-modal-header-padding-y) * .5) calc(var(--bs-modal-header-padding-x) * .5);
-    margin: calc(-.5 * var(--bs-modal-header-padding-y)) calc(-.5 * var(--bs-modal-header-padding-x)) calc(-.5 * var(--bs-modal-header-padding-y)) auto;
-    right: 20px;
-    position: relative;
-}
-
-#offcanvasBottom{height: 409px;
-    /* top: -100px; */
-    height: 350px;
-    margin-left: calc(100% - 300px);
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    width: 300px;
-    visibility: hidden;
-    /* float: initial; */
-    position: relative;
-}
-.w3-card {
-  height: 100%; /* Set a fixed height for all cards */
-}
-
-#restaurant_info_text {
-  height:200px;
-  overflow:scroll
-}
-
-#restaurant_info_text::-webkit-scrollbar {
-    display: none;
-}
-.w3-card img {
-  height: 150px; /* Ensure the image takes full height */
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
-}
-.iziToast>.iziToast-body .iziToast-message, .iziToast>.iziToast-body .iziToast-title {
-    padding: 0;
-    font-size: 14px;
-    line-height: 50px;
-    text-align: left;
-    float: left;
-    white-space: normal;
-}
-.btn.active {
-    background-color: #a6a6a6; /* Change this to the desired active color */
-    color: #fff;
-  }
-  input[type=checkbox], input[type=radio] {
-    box-sizing: border-box;
-    padding: 0;
-    position: relative;
-    top: 22px;
-}
-</style>
 </head>
+
 <body>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <a class="w3-bar-item w3-button w3-wide"><img src="../img/speed-dating.png" style="width: 30px;height: 30px;"> Foodie Friends</a>
-    <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-card" id="myNavbar">
+      <a class="w3-bar-item w3-button w3-wide"><img src="../img/speed-dating.png" style="width: 30px;height: 30px;">
+        Foodie Friends</a>
+      <!-- Right-sided navbar links -->
+      <div class="w3-right w3-hide-small">
 
+      </div>
+      <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+        onclick="w3_open()">
+        <i class="fa fa-bars"></i>
+      </a>
     </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars"></i>
-    </a>
   </div>
-</div>
 
-<!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
-  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
-  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
-  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
-</nav>
+  <!-- Sidebar on small screens when clicking the menu icon -->
+  <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+    style="display:none" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+    <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+    <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+    <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+  </nav>
 
   <!-- Contact section -->
 
   <div class="w3-container w3-pale-grey" style="padding:128px  16px; margin-top: 80px;" id="form-container">
 
-  <!-- <div id="form-container"> -->
+    <!-- <div id="form-container"> -->
     <div id="progress-bar">
-        <div style="background-color: black;"></div>
-        <div></div>
-        <div></div>
+      <div style="background-color: black;"></div>
+      <div></div>
+      <div></div>
     </div>
 
     <!-- Step 1: Personal Profile -->
     <div class="w3-container form-step active" style="padding:42px 16px" id="step-1">
-        <h4 class="w3-center"><b>Personal Profile</b></h4>
-        <p class="w3-center" >Fill up your profile to let others know more about you!</p>
-        <form class="profile-send" target="_blank">    
-            
-            <div class="w3-section">
-              <label for="genderSelect" class="form-label">nickname: </label>
-              <input class="w3-input w3-border" type="text" name="name" placeholder="eg. Mei" required/>
-            </div>
+      <h4 class="w3-center"><b>Personal Profile</b></h4>
+      <p class="w3-center">Fill up your profile to let others know more about you!</p>
+      <form class="profile-send" target="_blank">
 
-            <div class="w3-section">
-              <label for="genderSelect" class="form-label">Gender: </label>
-              <select class="form-select form-select-lg w3-input w3-border" id="genderSelect" name="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+        <div class="w3-section">
+          <label for="genderSelect" class="form-label">nickname: </label>
+          <input class="w3-input w3-border" type="text" name="name" placeholder="eg. Mei" required />
+        </div>
 
-            <div class="w3-section">
-              <label for="genderSelect" class="form-label">Birthday: </label>
-              <input class="w3-input w3-border" type="date" name="birthday" placeholder="eg. Mei" required/>
-            </div>
+        <div class="w3-section">
+          <label for="genderSelect" class="form-label">Gender: </label>
+          <select class="form-select form-select-lg w3-input w3-border" id="genderSelect" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
 
-          <div class=" w3-section">
-            <label for="relationshipSelect" class="form-label">Relationship goal: </label>
-            <select class="form-select form-select-lg w3-input w3-border" name="relationshipgoal">
-                <option value="long term">long term</option>
-                <option value="short term">short term</option>
-                <option value="new friends">new friends</option>
-                <option value="not sure yet">not sure yet</option>
-              </select>
-          </div>
+        <div class="w3-section">
+          <label for="genderSelect" class="form-label">Birthday: </label>
+          <input class="w3-input w3-border" type="date" name="birthday" placeholder="eg. Mei" required />
+        </div>
 
-          <label for="dietSelect" class="form-label">Dietary Preferences: </label>
-          <select class="form-select form-select-lg  w3-input w3-border" name="diet">
-              <option value="vegan">vegan</option>
-              <option value="vegetarian">vegetarian</option>
-              <option value="meat-eaters">meat-eaters</option>
-              <option value="no preference">no preference</option>
-            </select>
+        <div class=" w3-section">
+          <label for="relationshipSelect" class="form-label">Relationship goal: </label>
+          <select class="form-select form-select-lg w3-input w3-border" name="relationshipgoal">
+            <option value="long term">long term</option>
+            <option value="short term">short term</option>
+            <option value="new friends">new friends</option>
+            <option value="not sure yet">not sure yet</option>
+          </select>
+        </div>
 
-          <!-- <input class="profile-send-btn" type="submit" placeholder="eg. Mei" required/> -->
+        <label for="dietSelect" class="form-label">Dietary Preferences: </label>
+        <select class="form-select form-select-lg  w3-input w3-border" name="diet">
+          <option value="vegan">vegan</option>
+          <option value="vegetarian">vegetarian</option>
+          <option value="meat-eaters">meat-eaters</option>
+          <option value="no preference">no preference</option>
+        </select>
 
-          <div class=" w3-right">
-            <button type="button" style="top: 10px;position: relative;" onclick="nextStep(2)">Next</button>
-          </div>
-        </form>
+        <!-- <input class="profile-send-btn" type="submit" placeholder="eg. Mei" required/> -->
+
+        <div class=" w3-right">
+          <button type="button" style="top: 10px;position: relative;" onclick="nextStep(2)">Next</button>
+        </div>
+      </form>
     </div>
 
     <!-- Step 2: Preferences -->
     <div class="w3-container form-step" style="padding:42px 16px" id="step-2">
-        <h4 class="w3-center"><b>Favorite Restaurant</b></h4>
-        <p class="w3-center" >Please choose your TOP 3 restaurant near you!</p>
-        <!-- Team Section -->
-    <div class="w3-row-padding w3-grayscale " style="margin-top:20px">
-      <div class="w3-third w3-margin-bottom" id="restaurant_block" order="1">
-        <div class="w3-card">
-          <img src="https://placekitten.com/300/200" alt="John" style="width:100%">
-          <div class="w3-container" id="restaurant_info_text">
-            <p class="w3-opacity">Press Add to select a restaurant!</p>
-            <p><button class="w3-button w3-light-grey w3-block" id="restaurant_add_btn"><i class="fa fa-plus"></i> Add</button></p>
+      <h4 class="w3-center"><b>Favorite Restaurant</b></h4>
+      <p class="w3-center">Please choose your TOP 3 restaurant near you!</p>
+      <!-- Team Section -->
+      <div class="w3-row-padding w3-grayscale " style="margin-top:20px">
+        <div class="w3-third w3-margin-bottom" id="restaurant_block" order="1">
+          <div class="w3-card">
+            <img src="https://placekitten.com/300/200" alt="John" style="width:100%">
+            <div class="w3-container" id="restaurant_info_text">
+              <p class="w3-opacity">Press Add to select a restaurant!</p>
+              <p><button class="w3-button w3-light-grey w3-block" id="restaurant_add_btn"><i class="fa fa-plus"></i>
+                  Add</button></p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="w3-third w3-margin-bottom"  id="restaurant_block" order="2">
-        <div class="w3-card">
-          <img src="https://placekitten.com/300/200" alt="Jane" style="width:100%">
-          <div class="w3-container" id="restaurant_info_text">
-            <p class="w3-opacity">Press Add to select a restaurant!</p>
-            <p><button class="w3-button w3-light-grey w3-block" id="restaurant_add_btn"><i class="fa fa-plus"></i> Add</button></p>
+        <div class="w3-third w3-margin-bottom" id="restaurant_block" order="2">
+          <div class="w3-card">
+            <img src="https://placekitten.com/300/200" alt="Jane" style="width:100%">
+            <div class="w3-container" id="restaurant_info_text">
+              <p class="w3-opacity">Press Add to select a restaurant!</p>
+              <p><button class="w3-button w3-light-grey w3-block" id="restaurant_add_btn"><i class="fa fa-plus"></i>
+                  Add</button></p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="w3-third w3-margin-bottom " id="restaurant_block" order="3">
-        <div class="w3-card">
-          <img src="https://placekitten.com/300/200" alt="Dan" style="width:100%">
-          <div class="w3-container" id="restaurant_info_text">
-            <p class="w3-opacity">Press Add to select a restaurant!</p>
+        <div class="w3-third w3-margin-bottom " id="restaurant_block" order="3">
+          <div class="w3-card">
+            <img src="https://placekitten.com/300/200" alt="Dan" style="width:100%">
+            <div class="w3-container" id="restaurant_info_text">
+              <p class="w3-opacity">Press Add to select a restaurant!</p>
 
-            <p><button class="w3-button w3-light-grey w3-block" id="restaurant_add_btn"><i class="fa fa-plus"></i> Add</button></p>
+              <p><button class="w3-button w3-light-grey w3-block" id="restaurant_add_btn"><i class="fa fa-plus"></i>
+                  Add</button></p>
+            </div>
           </div>
         </div>
-      </div>
 
-    </div>
-    <div class=" w3-right">
-      <button type="button" onclick="prevStep(1)">Previous</button>
-      <button type="button" onclick="nextStep(3)">Next</button>
+      </div>
+      <div class=" w3-right">
+        <button type="button" onclick="prevStep(1)">Previous</button>
+        <button type="button" onclick="nextStep(3)">Next</button>
       </div>
     </div>
 
 
     <!-- Step 3: Additional Details -->
     <div class="w3-container form-step" style="padding:42px 16px" id="step-3">
-        <h4 class="w3-center"><b>Available time</b></h4>
-        <p class="w3-center" >What day is comfortable with you?</p>
-        <form id="dayCheckboxesForm">
-          <div class="w3-section">
+      <h4 class="w3-center"><b>Available time</b></h4>
+      <p class="w3-center">What day is comfortable with you?</p>
+      <form id="dayCheckboxesForm">
+        <div class="w3-section">
 
           <label for="dayCheckboxes" class="form-label">I am comfortable with: </label>
-</div>
-          <div id="dayCheckboxes"></div>
-          <div class=" w3-right">
-            <button type="button" onclick="prevStep(2)">Previous</button>
-            <button type="button" onclick="nextStep(3)">Submit</button>
-            </div>
-          <!-- <input type="submit" value="Submit"> -->
-        </form>    
+        </div>
+        <div id="dayCheckboxes"></div>
+        <div class=" w3-right">
+          <button type="button" onclick="prevStep(2)">Previous</button>
+          <button type="button" onclick="nextStep(3)">Submit</button>
+        </div>
+        <!-- <input type="submit" value="Submit"> -->
+      </form>
     </div>
 
-</div>
-<div class="modal fade" id="restaurantModal" tabindex="-1" aria-labelledby="restaurantModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="restaurantModalLabel">Select A restaurant you like</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-        <div style="height: 100%;">
-          <div style="display: flex;position: relative;margin: auto;height: 360px;">
-              <div  id="map" style="height: 100%;width: 100%;bottom:0;position: absolute; background-color: rgb(255, 255, 255);"></div>
+  </div>
+  <div class="modal fade" id="restaurantModal" tabindex="-1" aria-labelledby="restaurantModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="restaurantModalLabel">Select A restaurant you like</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div style="height: 100%;">
+            <div style="display: flex;position: relative;margin: auto;height: 360px;">
+              <div id="map"
+                style="height: 100%;width: 100%;bottom:0;position: absolute; background-color: rgb(255, 255, 255);">
+              </div>
 
               <!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"> -->
 
-              <div class="card offcanvas offcanvas-bottom custom-offcanvas"  id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="false">
+              <div class="card offcanvas offcanvas-bottom custom-offcanvas" id="offcanvasBottom"
+                aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="false">
 
-              
+
                 <!-- <div class="card offcanvas offcanvas-start offcanvas-end custom-offcanvas" style="width: 18rem;" id="offcanvasRight" tabindex="-1"  aria-labelledby="offcanvasRightLabel"> -->
-                  <img class="card-img-top" alt="..." style="height: 180px;
+                <img class="card-img-top" alt="..." style="height: 180px;
                   object-fit: cover;" id="popup_restaurant_img">
-                  <div class="card-body">
-                    <h5 class="card-title" id="store_name"></h5>
-                    <p class="card-text" id="store_address">XX Rd., NO.20</p>
-                    <p class="card-text" id="store_phone">0912345678</p>
-                    <a class="w3-btn" id="add_restaurant_list" style="position: absolute;right: 10px;bottom: 10px;border: 2px solid;border-radius: 100%;"><i class="fa fa-plus"></i></a>
+                <div class="card-body">
+                  <h5 class="card-title" id="store_name"></h5>
+                  <p class="card-text" id="store_address">XX Rd., NO.20</p>
+                  <p class="card-text" id="store_phone">0912345678</p>
+                  <a class="w3-btn" id="add_restaurant_list"
+                    style="position: absolute;right: 10px;bottom: 10px;border: 2px solid;border-radius: 100%;"><i
+                      class="fa fa-plus"></i></a>
 
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+                  <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
 
-                  </div>
                 </div>
+              </div>
 
-          </div>
+            </div>
 
-          <form method="post" class="sendRestaurant">
-            <input id="pac-input" class="form-control rounded pac-target-input" type="text" name="name" style="
+            <form method="post" class="sendRestaurant">
+              <input id="pac-input" class="form-control rounded pac-target-input" type="text" name="name" style="
             width: 390px;
             position: absolute;
             top: 40px;" placeholder="Search a restaurant（eg. ABC burger）" required="" autocomplete="on">
-              
 
-              <img src="../img/search.png" id="toggleButton" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" style="
+
+              <img src="../img/search.png" id="toggleButton" class="btn" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" style="
 position: relative;
 top: -340px;
     left: 335px;
     color: #000;
     filter: invert(75%);
     z-index: 13455;">
-          </form> 
-          <!-- <button class="button-54" role="button">Button 54</button> -->
+            </form>
+            <!-- <button class="button-54" role="button">Button 54</button> -->
 
-      </div>
-    
+          </div>
 
+
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div id="restaurant_result"></div>
-<div id="restaurant_box" >
-  <div style="height: 100%;">
+  <div id="restaurant_result"></div>
+  <div id="restaurant_box">
+    <div style="height: 100%;">
       <div style="display: flex;height: 100%;position: relative;margin: auto;">
-          <div  id="map" style="height: 100%;width: 100%;bottom:0;position: absolute; background-color: rgb(255, 255, 255);"></div>
+        <div id="map"
+          style="height: 100%;width: 100%;bottom:0;position: absolute; background-color: rgb(255, 255, 255);"></div>
 
-          <!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"> -->
+        <!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"> -->
 
-          <div class="card offcanvas offcanvas-bottom custom-offcanvas" style="    height: 350px;
+        <div class="card offcanvas offcanvas-bottom custom-offcanvas" style="    height: 350px;
           box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
           
 
           width: 580px;
-          visibility: hidden;"  id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="false">
+          visibility: hidden;" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="false">
 
-          
-            <!-- <div class="card offcanvas offcanvas-start offcanvas-end custom-offcanvas" style="width: 18rem;" id="offcanvasRight" tabindex="-1"  aria-labelledby="offcanvasRightLabel"> -->
-              <img class="card-img-top" alt="..." style="height: 180px;
+
+          <!-- <div class="card offcanvas offcanvas-start offcanvas-end custom-offcanvas" style="width: 18rem;" id="offcanvasRight" tabindex="-1"  aria-labelledby="offcanvasRightLabel"> -->
+          <img class="card-img-top" alt="..." style="height: 180px;
               object-fit: cover;" id="popup_restaurant_img">
-              <div class="card-body">
-                <h5 class="card-title" id="store_name"></h5>
-                <p class="card-text" id="store_address">XX Rd., NO.20</p>
-                <p class="card-text" id="store_phone">0912345678</p>
-                <a class="btn btn-primary" id="add_restaurant_list" style="position: absolute;
+          <div class="card-body">
+            <h5 class="card-title" id="store_name"></h5>
+            <p class="card-text" id="store_address">XX Rd., NO.20</p>
+            <p class="card-text" id="store_phone">0912345678</p>
+            <a class="btn btn-primary" id="add_restaurant_list" style="position: absolute;
                 right: 20px;
                 bottom: 15px;">Add To List</a>
-                <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
 
-              </div>
-            </div>
+          </div>
+        </div>
 
       </div>
 
       <form method="post" class="sendRestaurant">
-          <input id="pac-input" class="form-control rounded" type="text" name="name" style="
+        <input id="pac-input" class="form-control rounded" type="text" name="name" style="
 width: 390px;
 position: relative;
 top: 40px;
 z-index: 10000;
-" placeholder="Search a restaurant" required/>
-          
+" placeholder="Search a restaurant" required />
 
-          <img src="../img/search.png" id="toggleButton" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" style="
+
+        <img src="../img/search.png" id="toggleButton" class="btn" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" style="
 position: relative;
 top: -7px;
 left: 335px;
 color: #000;
 filter: invert(75%);
 z-index: 13455;">
-      </form> 
+      </form>
       <!-- <button class="button-54" role="button">Button 54</button> -->
 
-  </div>
+    </div>
 
-</div>
- <!-- Button to trigger modal -->
- <button type="button" class="btn " data-toggle="modal" data-target="#instructionModal"  style="display: none;">
-  <i class="fa fa-question-circle w3-hover-opacity"></i>
-  
-</button>
+  </div>
+  <!-- Button to trigger modal -->
+  <button type="button" class="btn " data-toggle="modal" data-target="#instructionModal" style="display: none;">
+    <i class="fa fa-question-circle w3-hover-opacity"></i>
+
+  </button>
   <!-- Modal -->
-  <div class="modal fade" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">HOW TO USE Foodie Friends</h5>
-          <button type="button" class="close" style="right: 15px;top: -5px;position: relative;font-size: 2rem;" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" style="right: 15px;top: -5px;position: relative;font-size: 2rem;"
+            data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -458,23 +327,30 @@ z-index: 13455;">
         <div class="modal-body">
           <!-- Page 0 -->
           <div class="page" id="page1">
-              <h6>Welcome to Foodie Friends!</h6>
-                <h6>This platform is designed to connect individuals for social interactions, companionship, and the possibility of finding meaningful connections.</h6>
-                  <h6>Please be aware of the following:</h6>
-                  <ol>
-                    <li><b>User Responsibility</b>: Users are responsible for their own safety and interactions. We encourage users to exercise caution and take necessary precautions when meeting new people.</li>
-                    <li><b>Privacy</b>: Protect your personal information. Avoid sharing sensitive details such as home addresses, financial information, or any information you are uncomfortable disclosing.</li>
-                    <li><b>Meeting in Public</b>: For face-to-face meetings, choose public places and inform a friend or family member about your plans. Always prioritize your safety.</li>
-                    <li><b>Respectful Behavior</b>: Treat others with respect and kindness. Harassment, discrimination, or any form of abusive behavior will not be tolerated.</li>
-                  </ol>
-                  <h6>By using Foodie Friends, you acknowledge and agree to these guidelines. Foodie Friends is not liable for any interactions or incidents that occur between users. Safety and respectful behavior are our top priorities.</h6>
-                  <h6>Enjoy connecting and creating meaningful connections responsibly!</h6>
-                  <h6 class="w3-right-align"><b>Foodie Friends</b></h6>
+            <h6>Welcome to Foodie Friends!</h6>
+            <h6>This platform is designed to connect individuals for social interactions, companionship, and the
+              possibility of finding meaningful connections.</h6>
+            <h6>Please be aware of the following:</h6>
+            <ol>
+              <li><b>User Responsibility</b>: Users are responsible for their own safety and interactions. We encourage
+                users to exercise caution and take necessary precautions when meeting new people.</li>
+              <li><b>Privacy</b>: Protect your personal information. Avoid sharing sensitive details such as home
+                addresses, financial information, or any information you are uncomfortable disclosing.</li>
+              <li><b>Meeting in Public</b>: For face-to-face meetings, choose public places and inform a friend or
+                family member about your plans. Always prioritize your safety.</li>
+              <li><b>Respectful Behavior</b>: Treat others with respect and kindness. Harassment, discrimination, or any
+                form of abusive behavior will not be tolerated.</li>
+            </ol>
+            <h6>By using Foodie Friends, you acknowledge and agree to these guidelines. Foodie Friends is not liable for
+              any interactions or incidents that occur between users. Safety and respectful behavior are our top
+              priorities.</h6>
+            <h6>Enjoy connecting and creating meaningful connections responsibly!</h6>
+            <h6 class="w3-right-align"><b>Foodie Friends</b></h6>
           </div>
           <!-- Page 1 -->
           <div class="page" id="page2" style="display: none;">
-              <h5>Select time and Click <b>start matching</b></h5>
-              <img src="../img/step_1.gif" style="width: 450px;">
+            <h5>Select time and Click <b>start matching</b></h5>
+            <img src="../img/step_1.gif" style="width: 450px;">
           </div>
 
           <!-- Page 2 -->
@@ -485,7 +361,7 @@ z-index: 13455;">
 
           <!-- Page 3 -->
           <div class="page" id="page4" style="display: none;">
-           
+
             <h5>Go to <b>Matches</b> to see if you have successful matches!</h5>
             <img src="../img/step_3.gif" style="width: 450px;">
 
@@ -499,54 +375,54 @@ z-index: 13455;">
           <button type="button" class="btn" id="instruction_btn_2" onclick="showPage(2)">STEP 2</button>
           <button type="button" class="btn" id="instruction_btn_3" onclick="showPage(3)">STEP 3</button>
           <button type="button" class="btn" id="instruction_btn_4" onclick="showPage(4)">STEP 4</button>
-          <button  type="button" class="btn" data-dismiss="modal" onclick="showPage(5)">START</button>
+          <button type="button" class="btn" data-dismiss="modal" onclick="showPage(5)">START</button>
         </div>
       </div>
     </div>
   </div>
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-32">
-  <div class="w3-xlarge w3-section">
-  </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-32">
+    <div class="w3-xlarge w3-section">
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
-<script>
+  <script>
 
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
 
 
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
 
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'block';
-  }
-}
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'block';
+      }
+    }
 
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
-}
-let formData = {};
+    // Close the sidebar with the close button
+    function w3_close() {
+      mySidebar.style.display = "none";
+    }
+    let formData = {};
 
-let currentStep = 1;
+    let currentStep = 1;
     const progressBar = document.querySelectorAll('#progress-bar div');
     const formSteps = document.querySelectorAll('.form-step');
 
-  async  function nextStep(next) {
-    console.log(currentStep)
-    console.log(getFormDataForCurrentStep(currentStep))
-    if (getFormDataForCurrentStep(currentStep)){
+    async function nextStep(next) {
+      console.log(currentStep)
+      console.log(getFormDataForCurrentStep(currentStep))
+      if (getFormDataForCurrentStep(currentStep)) {
         formSteps[currentStep - 1].classList.remove('active');
         progressBar[currentStep - 1].style.backgroundColor = 'grey';
 
@@ -557,171 +433,172 @@ let currentStep = 1;
         console.log(formData)
         console.log(restaurantList)
         console.log(currentStep)
-        if(formData.selectedDays && currentStep == 3){
+        if (formData.selectedDays && currentStep == 3) {
           submitProfile()
           $('#instructionModal').modal('show');
-          
+
         }
-        }else{
-          if(currentStep == 1){
-            showToast("","Birthday and name are required.",false)
+      } else {
+        if (currentStep == 1) {
+          showToast("", "Birthday and name are required.", false)
 
-            // alert("Birthday and name are required.")
+          // alert("Birthday and name are required.")
 
-          }else if(currentStep == 2){
-            showToast("","You need to choose three restaurants!",false)
+        } else if (currentStep == 2) {
+          showToast("", "You need to choose three restaurants!", false)
 
-            // alert("You need to choose three restaurants!")
+          // alert("You need to choose three restaurants!")
 
-          }else{
-            showToast("","You need to select a day at least before matching!",false)
+        } else {
+          showToast("", "You need to select a day at least before matching!", false)
 
-            // alert("You need to select a day at least before matching!")
+          // alert("You need to select a day at least before matching!")
 
-          }
         }
-      
+      }
+
     }
-async function submitProfile(){
-  await createprofile()
-  await createRestaurant()
-  await createDay()
-}
+    async function submitProfile() {
+      await createprofile()
+      await createRestaurant()
+      await createDay()
+    }
 
     function prevStep(prev) {
-        formSteps[currentStep - 1].classList.remove('active');
-        progressBar[currentStep - 1].style.backgroundColor = 'grey';
+      formSteps[currentStep - 1].classList.remove('active');
+      progressBar[currentStep - 1].style.backgroundColor = 'grey';
 
-        formSteps[prev - 1].classList.add('active');
-        progressBar[prev - 1].style.backgroundColor = 'black';
+      formSteps[prev - 1].classList.add('active');
+      progressBar[prev - 1].style.backgroundColor = 'black';
 
-        currentStep = prev;
+      currentStep = prev;
     }
     function getFormDataForCurrentStep(step) {
-    if (step === 1) {
-      console.log(isBlank(document.querySelector('input[name="name"]').value))
-      console.log(isBlank(document.querySelector('input[name="birthday"]').value))
+      if (step === 1) {
+        console.log(isBlank(document.querySelector('input[name="name"]').value))
+        console.log(isBlank(document.querySelector('input[name="birthday"]').value))
 
-      if(!isBlank(document.querySelector('input[name="name"]').value)&&!isBlank(document.querySelector('input[name="birthday"]').value)){
+        if (!isBlank(document.querySelector('input[name="name"]').value) && !isBlank(document.querySelector('input[name="birthday"]').value)) {
 
-       let d= {
-        name: document.querySelector('input[name="name"]').value,
-        gender: document.querySelector('select[name="gender"]').value,
-        birthday: document.querySelector('input[name="birthday"]').value,
-        relationshipgoal: document.querySelector('select[name="relationshipgoal"]').value,
-        diet: document.querySelector('select[name="diet"]').value,
-      };
-        formData = {
-      ...formData,
-      ...d,
-    };
-        return true
+          let d = {
+            name: document.querySelector('input[name="name"]').value,
+            gender: document.querySelector('select[name="gender"]').value,
+            birthday: document.querySelector('input[name="birthday"]').value,
+            relationshipgoal: document.querySelector('select[name="relationshipgoal"]').value,
+            diet: document.querySelector('select[name="diet"]').value,
+          };
+          formData = {
+            ...formData,
+            ...d,
+          };
+          return true
 
-      }else{
-        return false
-      }
+        } else {
+          return false
+        }
 
 
-    
-    } else if (step === 2) {
-      if(cacheResataurant && cacheResataurant.length<3){
 
-        return false
+      } else if (step === 2) {
+        if (cacheResataurant && cacheResataurant.length < 3) {
 
-      }else{
-        let d= {
-          restaurant: cacheResataurant,
-      };
-        formData = {
-      ...formData,
-      ...d,
-    };
-        return true
-      }
+          return false
 
- } else if (step === 3) {
-    const selectedDays = Array.from(document.querySelectorAll('input[name="selectedDays"]:checked'))
-      .map(checkbox => checkbox.defaultValue);
+        } else {
+          let d = {
+            restaurant: cacheResataurant,
+          };
+          formData = {
+            ...formData,
+            ...d,
+          };
+          return true
+        }
 
-      if(selectedDays.length == 0){
+      } else if (step === 3) {
+        const selectedDays = Array.from(document.querySelectorAll('input[name="selectedDays"]:checked'))
+          .map(checkbox => checkbox.defaultValue);
 
-        return false
+        if (selectedDays.length == 0) {
 
-        }else{
-        let d= {
-          selectedDays: selectedDays,
-        };
-        formData = {
-        ...formData,
-        ...d,
-        };
-        return true
+          return false
+
+        } else {
+          let d = {
+            selectedDays: selectedDays,
+          };
+          formData = {
+            ...formData,
+            ...d,
+          };
+          return true
         }
 
 
       }
-  }
+    }
 
-  function isBlank(str) {
-  return !str.replace(/\s/g, '').length;
-}
+    function isBlank(str) {
+      return !str.replace(/\s/g, '').length;
+    }
 
 
-     // Fetch API key from the server
-     fetch('/api/getApiKey')
-    .then(response => response.json())
-    .then(data => {
-      const apiKey = data.apiKey;
+    // Fetch API key from the server
+    fetch('/api/getApiKey')
+      .then(response => response.json())
+      .then(data => {
+        const apiKey = data.apiKey;
 
-      // Define a function to load the Google Maps API script
-      function loadGoogleMapsScript() {
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initAutocomplete`;
-        script.async = true;
+        // Define a function to load the Google Maps API script
+        function loadGoogleMapsScript() {
+          const script = document.createElement('script');
+          script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initAutocomplete`;
+          script.async = true;
 
-        // Append the script tag to the body or head of your HTML
-        document.head.appendChild(script);
+          // Append the script tag to the body or head of your HTML
+          document.head.appendChild(script);
+        }
+
+        // Call the function to load the Google Maps API script
+        loadGoogleMapsScript();
+      })
+      .catch(error => console.error('Error fetching API key:', error));
+
+    function showPage(pageNumber) {
+
+      if (pageNumber == 5) {
+        setTimeout(() => {
+          window.location.href = "/match";
+
+        }, 500)
+
       }
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
 
-      // Call the function to load the Google Maps API script
-      loadGoogleMapsScript();
-    })
-    .catch(error => console.error('Error fetching API key:', error));
-    
-function showPage(pageNumber) {
+      // Show the selected page
+      console.log(pageNumber)
+      document.getElementById(`page${pageNumber}`).style.display = 'block';
 
-  if(pageNumber == 5){
-    setTimeout(()=>{
-      window.location.href = "/match";
+      // Remove 'active' class from all buttons
+      document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
 
-    },500)
-
-  }
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
-    
-    // Show the selected page
-    console.log(pageNumber)
-    document.getElementById(`page${pageNumber}`).style.display = 'block';
-
-    // Remove 'active' class from all buttons
-    document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
-
-    // Add 'active' class to the button corresponding to the active page
-    document.getElementById(`instruction_btn_${pageNumber}`).classList.add('active');
-  }
+      // Add 'active' class to the button corresponding to the active page
+      document.getElementById(`instruction_btn_${pageNumber}`).classList.add('active');
+    }
 
 
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Bootstrap Slider JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-slider@11.0.2/dist/bootstrap-slider.min.js"></script>
 
-<script src="/js/profile.js"></script>
+  <script src="/js/profile.js"></script>
 
 
 </body>
+
 </html>
