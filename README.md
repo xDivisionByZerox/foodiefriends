@@ -78,7 +78,7 @@ https://foodiefriends.online/
 
 - **Entity Relationship Diagram (ERD)**: 
 <p align="center">
-  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/41099897-e8aa-44f7-9189-f10a8d2aa705" alt="fdErd">
+  <img src="https://github.com/ChennXIao/foodiefriends/assets/61040179/81030856-b2b4-4383-ae77-a3c84f7b703b" alt="fdErd">
 </p>
 
 - **Server Architecture**: 
